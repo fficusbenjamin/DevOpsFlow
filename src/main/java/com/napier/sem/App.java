@@ -1,8 +1,7 @@
 package com.napier.sem;
 
-        import java.sql.*;
-        import DataLayer.*;
-        import BusinessLayer.*;
+
+import BusinessLayer.*;
 public class App
 {
     public static void main(String[] args)
@@ -11,6 +10,9 @@ public class App
 
         //Only for testing purposes, the structure of classes will change in the future
         Report testReport = new CityReport();
+        Report testReportCap = new CapitalReport();
+        testReportCap.loadReport();
+        testReportCap.displayReport();
         testReport.loadReport();
         testReport.displayReport();
     }
