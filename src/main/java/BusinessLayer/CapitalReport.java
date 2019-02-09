@@ -11,7 +11,6 @@ public class CapitalReport extends Report{
 
     protected String capital;
     protected String country;
-    protected String district;
     protected int population;
 
     public CapitalReport(){
@@ -23,7 +22,7 @@ public class CapitalReport extends Report{
         DB_Connection con = DB_Connection.getInstance();
         //If the connection is successful
         if (con.Connect()){
-            String sqlStatement = "SELECT Capital,Code,Population FROM country;";
+            String sqlStatement = "SELECT city.Name AS \"City Name\",country.Name AS \"Country Name\",city.Population FROM city JOIN country ON city.ID=country.Capital;";
             ResultSet result = con.getResult(sqlStatement);
 
             try {
