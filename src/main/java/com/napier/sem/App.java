@@ -11,9 +11,12 @@ public class App
         //Only for testing purposes, the structure of classes will change in the future
         Report testReport = new CityReport();
         Report testReportCap = new CapitalReport();
+        Report testReportPop = new PopulationReport();
         testReportCap.loadReport();
         testReportCap.displayReport();
         testReport.loadReport();
         testReport.displayReport();
+        testReportPop.loadReport();
+        testReportPop.displayReport();
     }
 }
