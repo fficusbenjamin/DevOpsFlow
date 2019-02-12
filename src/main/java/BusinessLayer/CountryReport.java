@@ -60,11 +60,5 @@ public class CountryReport extends Report{
         //country report override, displays country report
         System.out.println("Country Report: " + this.name + "\nCode: " + this.Code + "\nContinent: " + this.Continent + "\nRegion: "+ this.Region +"\nPopulation: " + this.Population + "\nCapital: "+ this.Capital);
     }
-    public void printAll()
-    {
-        DB_Connection con = DB_Connection.getInstance();
-        String sqlStatement = "SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE='BASE TABLE';";
-        ResultSet Result = con.getResult(sqlStatement);
-        System.out.println(Result);
-    }
+
 }
