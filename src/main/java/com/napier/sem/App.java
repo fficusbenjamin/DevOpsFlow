@@ -2,10 +2,20 @@ package com.napier.sem;
 
 
 import BusinessLayer.*;
+
+import java.util.Scanner;
+
 public class App
 {
     public static void main(String[] args)
     {
+
+
+
+
+
+
+
         System.out.println("Starting application, it can take some time. ~20sec");
 
        // Only for testing purposes, the structure of classes will change in the future
