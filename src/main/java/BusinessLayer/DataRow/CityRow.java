@@ -4,5 +4,5 @@ public class CityRow extends DataRow{
     public String Name;
     public String Country;
     public String District;
-   // public int Population;
+    public int Population;
 }

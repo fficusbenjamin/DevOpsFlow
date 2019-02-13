@@ -70,7 +70,7 @@ public class DataRow {
      * @param fieldName
      * @param newValue
      */
-    public void setPropertyValue(String fieldName, String newValue)  {
+    public void setPropertyValue(String fieldName, Object newValue)  {
         try {
             Field[] fields = this.getClass().getFields();
             for (Field field : fields) {
@@ -79,7 +79,7 @@ public class DataRow {
                 {
 
                     field.set(this, newValue);
-                    System.out.println("value set to:" + newValue);
+                   // System.out.println("value set to:" + newValue);
                 }
             }
         }catch(IllegalAccessException e){
@@ -92,11 +92,11 @@ public class DataRow {
 
     @Override
     public String toString() {
-        String displayString = "\n";
+        String displayString = "";
         for (String value : this.getPropertyValues()) {
             if (value != null)
             {
-                displayString += (" " + value.toString());
+                displayString += (value.toString() + "\t\t\t");
             }
         }
         return displayString;

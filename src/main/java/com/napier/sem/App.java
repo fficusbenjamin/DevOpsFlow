@@ -13,7 +13,7 @@ public class App
     {
         System.out.println("Starting application, it can take some time. ~20sec");
         DB_Connection con = DB_Connection.getInstance();
-        ArrayList<DataRow> rows = con.getResult("CityRow","SELECT Name,District,CountryCode AS Country FROM city;");
+        ArrayList<DataRow> rows = con.getResult("CityRow","SELECT Name,District,CountryCode AS Country, Population FROM city;");
 
         displayReport(rows);
 

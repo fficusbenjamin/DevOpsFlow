@@ -3,6 +3,7 @@ package DataLayer;
 import BusinessLayer.CapitalReport;
 import BusinessLayer.DataRow.*;
 
+import java.lang.reflect.Field;
 import java.lang.reflect.Type;
 import java.sql.*;
 import java.util.ArrayList;
@@ -117,7 +118,13 @@ public class DB_Connection {
                     if (prop != null)
                     {
                        // System.out.println("Test value " + result.getString(prop));
-                        newRow.setPropertyValue(prop,result.getString(prop));
+                        if (newRow.getClass().getField(prop).getType().isPrimitive())
+                        {
+                            newRow.setPropertyValue(prop,result.getInt(prop));
+                        }else{
+                            newRow.setPropertyValue(prop,result.getString(prop));
+                        }
+
 
 
 
@@ -129,8 +136,8 @@ public class DB_Connection {
                 if (newRow != null)
                 {
                     list.add(newRow);
-                    System.out.println("Added value: \n ");
-                    System.out.println(((CityRow) newRow).toString() );
+                    //System.out.println("Added value: \n ");
+                    //System.out.println(((CityRow) newRow).toString() );
                 }
 
             }
