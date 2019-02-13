@@ -23,7 +23,7 @@ public class CapitalReport extends Report{
         //If the connection is successful
         if (con.Connect()){
             String sqlStatement = "SELECT city.Name AS \"City Name\",country.Name AS \"Country Name\",city.Population FROM city JOIN country ON city.ID=country.Capital;";
-            ResultSet result = con.getResult(sqlStatement);
+            /*ResultSet result = con.getResult(sqlStatement);
 
             try {
                 if (result.next()){
@@ -36,7 +36,7 @@ public class CapitalReport extends Report{
                 }
             }catch (SQLException sqlError){
                 System.out.println("Invalid SQL statement!");
-            }
+            }*/
         }
 
 

@@ -21,7 +21,7 @@ public class CityReport extends Report {
         //If the connection is successful
         if (con.Connect()){
             String sqlStatement = "SELECT Name,CountryCode,District,Population FROM city;";
-            ResultSet result = con.getResult(sqlStatement);
+            /*ResultSet result = con.getResult(sqlStatement);
 
             try {
                 if (result.next()){
@@ -35,7 +35,7 @@ public class CityReport extends Report {
                 }
             }catch (SQLException sqlError){
                 System.out.println("Invalid SQL statement!");
-            }
+            }*/
         }
 
 

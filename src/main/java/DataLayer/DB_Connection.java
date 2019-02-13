@@ -1,6 +1,12 @@
 package DataLayer;
 
+import BusinessLayer.CapitalReport;
+import BusinessLayer.DataRow.*;
+
+import java.lang.reflect.Type;
 import java.sql.*;
+import java.util.ArrayList;
+
 public class DB_Connection {
     /*
     DB_Connection - Class
@@ -77,24 +83,69 @@ public class DB_Connection {
         }
         return true;
     }
-    public ResultSet getResult(String sqlStmt){
-        if ( con != null ){
-            try
-            {
-                // Create an SQL statement
-                Statement stmt = con.createStatement();
-                // Execute SQL statement
-                return stmt.executeQuery(sqlStmt);
-            }
-            catch (Exception e)
-            {
-                System.out.println(e.getMessage());
-                System.out.println("Failed to get the result");
-                return null;
-            }
+
+    public ArrayList<DataRow> getResult(String classType, String sqlStmt){
+        ArrayList<DataRow> list = new ArrayList<>();
+
+        //We make sure we have a working connection
+        if (con == null)
+        {
+            this.Connect();
         }
 
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Execute SQL statement
+            ResultSet result = stmt.executeQuery(sqlStmt);
+            //Loop through each row inside result
+            while (result.next()) {
+                DataRow newRow = new CityRow();
+                /*
+                switch (classType){
+                    case "CityRow":
+                        newRow = new CityRow();
 
-        return null;
+                    default:
+                        newRow = new DataRow();
+                }*/
+                //We add the results to the chosen DataRow
+                ArrayList<String> properties = newRow.getPropertyNames();
+                for (String prop : properties)
+                {
+                    if (prop != null)
+                    {
+                       // System.out.println("Test value " + result.getString(prop));
+                        newRow.setPropertyValue(prop,result.getString(prop));
+
+
+
+                    }else{
+                        System.out.println("Given property is null");
+                    }
+
+                }
+                if (newRow != null)
+                {
+                    list.add(newRow);
+                    System.out.println("Added value: \n ");
+                    System.out.println(((CityRow) newRow).toString() );
+                }
+
+            }
+            System.out.println("Number of rows loaded:" + list.size() );
+            return list;
+
+        }catch (SQLException sqlError){
+            System.out.println("Invalid SQL statement!");
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get the result");
+            return null;
+        }
+        return list;
     }
 }

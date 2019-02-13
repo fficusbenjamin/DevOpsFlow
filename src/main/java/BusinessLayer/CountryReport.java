@@ -30,7 +30,8 @@ public class CountryReport extends Report{
         //If the connection is successful
         if (con.Connect()){
             String sqlStatement = "SELECT country.Name,country.Code,country.Continent,country.Region,country.Population,city.Name AS 'Capital' FROM city JOIN country on city.ID=country.Capital Where country.Name like 'Poland';";
-            ResultSet result = con.getResult(sqlStatement);
+
+            /*ResultSet result = con.getResult(sqlStatement);
 
             try {
                 if (result.next()){
@@ -47,7 +48,7 @@ public class CountryReport extends Report{
                 }
             }catch (SQLException sqlError){
                 System.out.println("Invalid SQL statement!");
-            }
+            }*/
         }
 
 

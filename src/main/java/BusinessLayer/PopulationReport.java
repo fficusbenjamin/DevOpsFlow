@@ -20,7 +20,7 @@ public class PopulationReport extends Report
         //If the connection is successful
         if (con.Connect()) {
             String sqlStatement = "SELECT Population FROM world;";
-            ResultSet result = con.getResult(sqlStatement);
+            /*ResultSet result = con.getResult(sqlStatement);
 
             try {
                 if (result.next()) {
@@ -31,7 +31,7 @@ public class PopulationReport extends Report
                 }
             } catch (SQLException sqlError) {
                 System.out.println("Invalid SQL statement!");
-            }
+            }*/
         }
 
     }
