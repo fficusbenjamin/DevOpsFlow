@@ -14,12 +14,12 @@ public class App
         Report testReportCap = new CapitalReport();
         Report testReportPop = new PopulationReport();
 
-        testCountryReport.loadReport();
-        testCountryReport.displayReport();
-        testReportCap.loadReport();
-        testReportCap.displayReport();
-        testReport.loadReport();
-        testReport.displayReport();
+        //testCountryReport.loadReport();
+        //testCountryReport.displayReport();
+        //testReportCap.loadReport();
+        //testReportCap.displayReport();
+        //testReport.loadReport();
+        //testReport.displayReport();
         testReportPop.loadReport();
         testReportPop.displayReport();
     }
