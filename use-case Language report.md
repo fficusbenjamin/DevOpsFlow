@@ -28,7 +28,7 @@ A request for Language Report is received by Manager
 3) A Manager extracts Language report using correct option in menu
 4) Report is provided to requesting party 
 **Extensions** -
-The Type of Report is not covered by App
+Main Menu
 **Sub-variations** -
 None
 **Schedule** -

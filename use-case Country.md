@@ -22,7 +22,7 @@ A request for Country Report is received by Manager
 2) A Manager Extracts a correct report from the Database using the App
 3) Manager provides the Report to requesting party
 **Extensions** -
-The Type of Report is not covered by App
+Main Menu
 **Sub-variations** -
 None
 **Schedule** -
