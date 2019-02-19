@@ -9,6 +9,13 @@ public class App
 {
     public static void main(String[] args)
     {
+
+
+
+
+
+
+
         System.out.println("Starting application, it can take some time. ~20sec");
         testMenu();
 
