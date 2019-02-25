@@ -13,9 +13,21 @@ public class App
     {
         System.out.println("Starting application, it can take some time. ~20sec");
         DB_Connection con = DB_Connection.getInstance();
+
         ArrayList<DataRow> rows = con.getResult("CityRow","SELECT Name,District,CountryCode AS Country, Population FROM city;");
 
         displayReport(rows);
+
+    }
+
+    public static void displayReport(ArrayList<DataRow> rows)
+    {
+
+        for (DataRow row : rows)
+        {
+            System.out.println(row.toString());
+        }
+    }
 
         /* Report testObj = new CapitalReport();
         System.out.println("Created object");
@@ -59,13 +71,5 @@ public class App
         testReport.displayReport();
         testReportPop.loadReport();
         testReportPop.displayReport();*/
-    }
 
-    public static void displayReport(ArrayList<DataRow> rows)
-    {
-        for (DataRow row : rows)
-        {
-            System.out.println(row.toString());
-        }
-    }
 }

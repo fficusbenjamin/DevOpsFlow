@@ -16,6 +16,7 @@ public class DataRow {
      */
     public ArrayList<String> getPropertyNames() {
         Field[] fields = this.getClass().getFields();
+
         ArrayList<String> names = new ArrayList<>();
 
         for (Field field : fields)
@@ -39,7 +40,9 @@ public class DataRow {
      * @return ArrayList<String> of property values
      */
     public ArrayList<String> getPropertyValues() {
+
         Field[] fields = this.getClass().getFields();
+
         ArrayList<String> values = new ArrayList<>();
 
         for (Field field : fields)
@@ -79,7 +82,7 @@ public class DataRow {
                 {
 
                     field.set(this, newValue);
-                   // System.out.println("value set to:" + newValue);
+                    //System.out.println("value set to:" + newValue);
                 }
             }
         }catch(IllegalAccessException e){
@@ -92,13 +95,26 @@ public class DataRow {
 
     @Override
     public String toString() {
-        String displayString = "";
+
+        //String displayString = "";
+        String display = "";
+
+        System.out.println(String.format("%-10s %-15s %-20s %-8s", "value", "value", "value", "value"));
+
         for (String value : this.getPropertyValues()) {
             if (value != null)
             {
-                displayString += (value.toString() + "\t\t\t");
+                //displayString += (value.toString() + "\t\t\t");
+
+                display = String.format("%-10s %-15s %-20s %-8s"
+                        , value.toString()
+                        , value.toString()
+                        , value.toString()
+                        , value.toString());
             }
         }
-        return displayString;
+        //return displayString;
+        return display;
     }
+
 }
