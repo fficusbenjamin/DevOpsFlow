@@ -98,7 +98,6 @@ public class DataRow {
 
         //String displayString = "";
         String display = "";
-
         System.out.println(String.format("%-10s %-15s %-20s %-8s", "value", "value", "value", "value"));
 
         for (String value : this.getPropertyValues()) {
