@@ -111,7 +111,7 @@ public class TextMenu
 
 
                 SQL_Manager SQLstatement = new SQL_Manager();
-                SQLstatement.getQuery("country",null);
+                SQLstatement.query_db("CountryRow", null);
             }
         }) )
                 .addItem( new MenuItem("Continent", null, new ActionListener(){
