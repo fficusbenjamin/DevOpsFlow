@@ -1,6 +1,7 @@
 package com.napier.sem;
 
 import BusinessLayer.SQL_Manager;
+import DataLayer.DB_Connection;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,7 +10,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TextMenu
+public class app
 {
     class Menu
     {
@@ -172,15 +173,16 @@ public class TextMenu
         return rootMenu ;
     }
 
-    /** Creates a new instance of TextMenu */
-    public TextMenu()
+    /** Creates a new instance of app */
+    public app()
     {
     }
 
     public static void main( String[] args )
     {
+        DB_Connection con = DB_Connection.getInstance();
         BufferedReader br = new BufferedReader( new InputStreamReader( System.in ) ) ;
-        TextMenu t = new TextMenu() ;
+        app t = new app() ;
         Menu currentMenu = t.createMenuSystem() ;
         while( currentMenu != null )
         {
