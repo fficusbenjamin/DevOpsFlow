@@ -1,5 +1,6 @@
 package com.napier.sem;
 
+import BusinessLayer.DataRow.DataRow;
 import BusinessLayer.SQL_Manager;
 import DataLayer.DB_Connection;
 
@@ -110,21 +111,30 @@ public class app
         subMenu1.addItem( new MenuItem("World", null, new ActionListener(){
             public void actionPerformed(ActionEvent e) {
 
-
+                System.out.println("world menus is called");
                 SQL_Manager SQLstatement = new SQL_Manager();
-                SQLstatement.query_db("CountryRow", null);
+
+
+                ArrayList<String> options = new ArrayList<>();
+                options.add("WHERE Population > 1");
+                //options.add("");
+                SQLstatement.query_db("countryQuery", options);
+
+
+
+
             }
         }) )
-                .addItem( new MenuItem("Continent", null, new ActionListener(){
-                    public void actionPerformed(ActionEvent e) {
-                        //code for the actual query
-                    }
-                }) )
-                .addItem( new MenuItem("Region", null, new ActionListener(){
-                    public void actionPerformed(ActionEvent e) {
-                        //code for the actual query
-                    }
-                }) ).addItem( backLink );
+        .addItem( new MenuItem("Continent", null, new ActionListener(){
+            public void actionPerformed(ActionEvent e) {
+                //code for the actual query
+            }
+        }) )
+        .addItem( new MenuItem("Region", null, new ActionListener(){
+            public void actionPerformed(ActionEvent e) {
+                //code for the actual query
+            }
+        }) ).addItem( backLink );
 
         Menu subMenu2 = new Menu("City Menu");
 
@@ -177,10 +187,11 @@ public class app
     public app()
     {
     }
-
+    public static DB_Connection con;
     public static void main( String[] args )
     {
-        DB_Connection con = DB_Connection.getInstance();
+        con = DB_Connection.getInstance();
+        con.Connect();
         BufferedReader br = new BufferedReader( new InputStreamReader( System.in ) ) ;
         app t = new app() ;
         Menu currentMenu = t.createMenuSystem() ;

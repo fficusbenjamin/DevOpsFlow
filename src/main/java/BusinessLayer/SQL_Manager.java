@@ -2,6 +2,7 @@ package BusinessLayer;
 
 import BusinessLayer.DataRow.DataRow;
 import DataLayer.DB_Connection;
+import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,7 +16,7 @@ public class SQL_Manager {
     {
         // All Queries have two kinds of variables, which refer to Where and Limit Clauses- both of which may be- or may not be present in final query
         //Initialise all query templates
-       // queries.put("countryQuery","SELECT Name, Code, Continent, Region, Population, Capital FROM country %s ORDER BY Population DESC");
+        queries.put("countryQuery","SELECT Name, Code, Continent, Region, Population, Capital FROM country %s ORDER BY Population DESC;");
         queries.put("CountryRow","SELECT country.Name,country.Code,country.Continent,country.Region,country.Population,city.Name AS 'Capital' FROM city JOIN country on city.ID=country.Capital %s ORDER BY country.Population DESC %s;");
         queries.put("CityRow","SELECT city.Name,Country.Name,city.District,city.Population FROM city JOIN country ON city.CountryCode=country.Code %s ORDER BY Population DESC %s;");
         queries.put("CapitalCityRow","SELECT city.Name,country.Name,city.Population FROM city JOIN country ON city.CountryCode=country.Code %s ORDER BY city.Poplation %s");
@@ -43,7 +44,12 @@ public class SQL_Manager {
     {
         System.out.println("Starting application, it can take some time. ~20sec");
         DB_Connection con = DB_Connection.getInstance();
-        ArrayList<DataRow> rows =con.getResult(queryName, getQuery(queryName, queryValues));
+
+        String newQuery = getQuery(queryName, queryValues);
+
+        System.out.println(newQuery);
+
+        ArrayList<DataRow> rows = con.getResult("CountryRow", newQuery );
         displayReport(rows);
     }
     // Martins display method originally in app file, reads ArrayList and displays each row- used above

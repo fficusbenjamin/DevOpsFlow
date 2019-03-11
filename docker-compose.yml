@@ -6,7 +6,6 @@ services:
     build: .
     stdin_open: true
     tty: true
-
   # db is is db folder
   db:
     build: src/db/.

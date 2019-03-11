@@ -102,8 +102,9 @@ public class DB_Connection {
             ResultSet result = stmt.executeQuery(sqlStmt);
             //Loop through each row inside result
             while (result.next()) {
-                DataRow newRow = new CityRow();
+                DataRow newRow = new CountryRow();
                 /*
+                //TODO: Currently only works with CountryRow
                 switch (classType){
                     case "CityRow":
                         newRow = new CityRow();
