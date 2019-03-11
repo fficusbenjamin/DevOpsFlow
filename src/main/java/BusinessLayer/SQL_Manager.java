@@ -34,6 +34,11 @@ public class SQL_Manager {
         String newQuery = String.format( queries.get( queryName ), objValues );
         return newQuery;
     }
+    //Main method wrapping everything together- connects to db, than creates an array list of database results (Using Data Row class) to be displayed.
+    // sql statement is constructed using above getQuery method. Accepts arguments which are: queryName points to correct sql statement core stored in SQL_Manager- first part before the coma is the queryName.
+    //queryValues are variable string statements which are filling in the gaps in SQL_Managers statement, wherever there is "%s" in SQL_Managers statement
+    // a string can be put in based on first come first serve basis- if there are less arguments than "%s" the "%s" will be removed and nothing will be put in the sql_statement, which is useful on occasion
+    // correct syntax to use is SQL_Manager.query_db("queryName","firstString" "Second String") - or at least i think it is correct at this time dunno if they should be separated with commas :)
     public void query_db(String queryName,ArrayList<String> queryValues)
     {
         System.out.println("Starting application, it can take some time. ~20sec");
@@ -41,6 +46,7 @@ public class SQL_Manager {
         ArrayList<DataRow> rows =con.getResult(queryName, getQuery(queryName, queryValues));
         displayReport(rows);
     }
+    // Martins display method originally in app file, reads ArrayList and displays each row- used above
     public static void displayReport(ArrayList<DataRow> rows)
     {
 
