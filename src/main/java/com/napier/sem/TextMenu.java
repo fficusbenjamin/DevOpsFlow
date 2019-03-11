@@ -1,5 +1,7 @@
 package com.napier.sem;
 
+import BusinessLayer.SQL_Manager;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
@@ -106,7 +108,10 @@ public class TextMenu
 
         subMenu1.addItem( new MenuItem("World", null, new ActionListener(){
             public void actionPerformed(ActionEvent e) {
-                //code for the actual query
+
+
+                SQL_Manager SQLstatement = new SQL_Manager();
+                SQLstatement.getQuery("country",null);
             }
         }) )
                 .addItem( new MenuItem("Continent", null, new ActionListener(){

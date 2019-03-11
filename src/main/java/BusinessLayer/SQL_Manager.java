@@ -1,5 +1,8 @@
 package BusinessLayer;
 
+import BusinessLayer.DataRow.DataRow;
+import DataLayer.DB_Connection;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -30,5 +33,20 @@ public class SQL_Manager {
 
         String newQuery = String.format( queries.get( queryName ), objValues );
         return newQuery;
+    }
+    public void query_db(String queryName,ArrayList<String> queryValues)
+    {
+        System.out.println("Starting application, it can take some time. ~20sec");
+        DB_Connection con = DB_Connection.getInstance();
+        ArrayList<DataRow> rows =con.getResult(queryName, getQuery(queryName, queryValues));
+        displayReport(rows);
+    }
+    public static void displayReport(ArrayList<DataRow> rows)
+    {
+
+        for (DataRow row : rows)
+        {
+            System.out.println(row.toString());
+        }
     }
 }
