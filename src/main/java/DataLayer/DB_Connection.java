@@ -1,10 +1,7 @@
 package DataLayer;
 
-import BusinessLayer.CapitalReport;
 import BusinessLayer.DataRow.*;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Type;
 import java.sql.*;
 import java.util.ArrayList;
 

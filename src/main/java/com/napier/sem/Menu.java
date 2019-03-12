@@ -139,6 +139,7 @@ public class Menu
     }
 
     public static Menu additionalDisplay(Menu currentMenu, BufferedReader br){
+        //TODO: Find a better way so static is not required
         while( currentMenu != null )
         {
             System.out.println( currentMenu ) ;
