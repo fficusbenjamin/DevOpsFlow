@@ -1,27 +1,26 @@
-package Sem;
+package Tests;
 
-
-import BusinessLayer.*;
 import BusinessLayer.DataRow.*;
 import Sem.*;
 import DataLayer.*;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.TestInstance;
 
-import java.util.ArrayList;
+import org.junit.jupiter.api.BeforeAll;
+//import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class AppIntegrationTest
-{
+
+
+
+public class UnitTests {
+
     static DB_Connection con;
     static DataRow dataRow;
     static CapitalCityRow capitalCityRow;
     static CityRow cityRow;
     static CountryRow countryRow;
+    static Menu mainmenu;
 
 
     // Database tests
@@ -32,32 +31,32 @@ public class AppIntegrationTest
     }
 
     //Data structure tests
-    @org.junit.Test
+    @Test
     public void setDataRow(){
         dataRow = new DataRow();
         assertNotNull(dataRow);
     }
 
-    @org.junit.Test
+    @Test
     public void setCapitalCityRow(){
         capitalCityRow = new CapitalCityRow();
         assertNotNull(capitalCityRow);
     }
 
-    @org.junit.Test
+    @Test
     public void setCityRow(){
         cityRow = new CityRow();
         assertNotNull(cityRow);
     }
 
-    @org.junit.Test
+    @Test
     public void setCountryRow(){
         countryRow = new CountryRow();
         assertNotNull(countryRow);
     }
 
 
-    @org.junit.Test
+    @Test
     public void setCon()
     {
         init();
@@ -66,7 +65,7 @@ public class AppIntegrationTest
 
     private long startAt;
 
-    @Before
+    /*@Before
     public void before() {
         this.startAt = System.currentTimeMillis();
     }
@@ -80,5 +79,25 @@ public class AppIntegrationTest
     public void setConnection() throws InterruptedException {
         init();
         con.Connect();
+    }*/
+
+    //Menu tests
+    @Test
+    public void setMainmenu()
+    {
+        mainmenu = new Menu("Main Menu");
+        assertNotNull(mainmenu);
     }
+    @Test
+    public void createMenuSystem()
+    {
+        mainmenu = Menu.createMenuSystem();
+        assertNotNull(mainmenu);
+        String menuDisplay = mainmenu.toString();
+        assertNotEquals(menuDisplay.length(),0);
+    }
+
+
+
 }
+
