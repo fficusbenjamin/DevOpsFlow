@@ -72,7 +72,7 @@ public class UnitTests {
 
     private long startAt;
 
-    @Before
+    /*@Before
     public void before() {
         this.startAt = System.currentTimeMillis();
     }
@@ -82,7 +82,7 @@ public class UnitTests {
         System.out.println(String.format("Timed out after: %1$d ms", System.currentTimeMillis() - startAt));
         System.out.println("Could not connect to the database");
     }
-    /*@Test(timeout = 30000)
+    @Test(timeout = 30000)
     public void setConnection() throws InterruptedException {
         init();
         con.Connect();
