@@ -3,7 +3,7 @@ package Sem;
 
 import BusinessLayer.*;
 import BusinessLayer.DataRow.*;
-import com.napier.sem.*;
+import Sem.*;
 import DataLayer.*;
 import org.junit.After;
 import org.junit.Before;
