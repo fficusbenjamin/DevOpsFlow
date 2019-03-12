@@ -156,6 +156,7 @@ public class Menu
             }
         }
 
+        //TODO: currentMenu is always null here, find better solution
         return currentMenu;
     }
 }

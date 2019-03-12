@@ -27,6 +27,7 @@ public class UnitTests {
     static CapitalCityRow capitalCityRow;
     static CityRow cityRow;
     static CountryRow countryRow;
+    static Menu mainmenu;
 
 
     // Database tests
@@ -87,6 +88,21 @@ public class UnitTests {
         con.Connect();
     }
 
+    //Menu tests
+    @Test
+    public void setMainmenu()
+    {
+        mainmenu = new Menu("Main Menu");
+        assertNotNull(mainmenu);
+    }
+    @Test
+    public void createMenuSystem()
+    {
+        mainmenu = Menu.createMenuSystem();
+        assertNotNull(mainmenu);
+        String menuDisplay = mainmenu.toString();
+        assertNotEquals(menuDisplay.length(),0);
+    }
 
 
 
