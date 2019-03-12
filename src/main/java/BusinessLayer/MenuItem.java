@@ -1,6 +1,6 @@
 package BusinessLayer;
 
-import com.napier.sem.Menu;
+import Sem.Menu;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

@@ -1,15 +1,9 @@
-package com.napier.sem;
+package Sem;
 
-import BusinessLayer.DataRow.DataRow;
-import BusinessLayer.SQL_Manager;
 import DataLayer.DB_Connection;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
 
 public class app
 {

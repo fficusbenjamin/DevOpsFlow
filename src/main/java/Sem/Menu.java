@@ -1,4 +1,4 @@
-package com.napier.sem;
+package Sem;
 
 import BusinessLayer.MenuItem;
 import BusinessLayer.SQL_Manager;
