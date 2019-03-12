@@ -1,7 +1,7 @@
 package Sem;
 
 import BusinessLayer.DataRow.*;
-import com.napier.sem.*;
+import Sem.*;
 import DataLayer.*;
 
 import org.junit.jupiter.api.BeforeAll;
