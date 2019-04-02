@@ -32,6 +32,7 @@ public class AppIntegrationTest
         try {
             setConnection();
         }catch (Exception e){
+            System.exit(0);
 
         }
 
