@@ -12,16 +12,30 @@ public class DB_Connection {
     and importing data from the database
     Part of singleton design pattern.
     */
+    private String _domain;
     private static DB_Connection instance;
-    public static DB_Connection getInstance(){
+    public static DB_Connection getInstance(Boolean localhost){
         if (instance==null){
-            instance = new DB_Connection();
+            if (localhost != null)
+            {
+                if (localhost){
+                    instance = new DB_Connection("localhost");
+                }
+            }else{
+                instance = new DB_Connection("");
+            }
+
         }
         return instance;
     }
 
     //Constructor
-    private DB_Connection(){}
+    private DB_Connection(){
+        this._domain = "";
+    }
+    private DB_Connection(String domain){
+        this._domain = domain;
+    }
 
     // Connection to the database
     private static Connection con = null;
@@ -47,8 +61,14 @@ public class DB_Connection {
             {
                 // Wait a bit for db to start
                 Thread.sleep(20000);
+                String url = "";
+                if (this._domain != null){
+                    url = "jdbc:mysql://db:"  + this._domain + "3306/world?useSSL=false&useUnicode=true&characterEncoding=utf-8";
+                }else{
+                    url = "jdbc:mysql://db:3306/world?useSSL=false&useUnicode=true&characterEncoding=utf-8";
+                }
                 // Connect to database
-                con = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false&useUnicode=true&characterEncoding=utf-8", "root", "example");
+                con = DriverManager.getConnection(url, "root", "example");
                 System.out.println("Successfully connected, if it crashes after that then its your fault");
                 // Exit for loop
                 break;

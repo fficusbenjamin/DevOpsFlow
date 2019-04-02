@@ -28,7 +28,7 @@ public class AppIntegrationTest
     @BeforeAll
     public void init()
     {
-        con = DB_Connection.getInstance();
+        con = DB_Connection.getInstance(true);
     }
 
     //Data structure tests
