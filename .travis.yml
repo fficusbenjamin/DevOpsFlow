@@ -14,7 +14,7 @@ install:
   - ls
   - ls db/
   # Build database image.
-  - docker build -t database db/.
+  - docker build -t database src/db/.
   # Run the database image.
   - docker run --rm -d -e MYSQL_ROOT_PASSWORD=example -p 33060:3306 database
   # Build and install the application.
