@@ -63,7 +63,7 @@ public class DB_Connection {
                 Thread.sleep(20000);
                 String url = "";
                 if (this._domain != null){
-                    url = "jdbc:mysql://db:"  + this._domain + "3306/world?useSSL=false&useUnicode=true&characterEncoding=utf-8";
+                    url = "jdbc:mysql://" + this._domain + "/db:3306/world?useSSL=false&useUnicode=true&characterEncoding=utf-8";
                 }else{
                     url = "jdbc:mysql://db:3306/world?useSSL=false&useUnicode=true&characterEncoding=utf-8";
                 }
