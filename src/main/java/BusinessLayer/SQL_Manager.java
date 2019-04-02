@@ -43,7 +43,7 @@ public class SQL_Manager {
     public void query_db(String queryName,ArrayList<String> queryValues)
     {
         System.out.println("Starting application, it can take some time. ~20sec");
-        DB_Connection con = DB_Connection.getInstance(false);
+        DB_Connection con = DB_Connection.getInstance();
 
         String newQuery = getQuery(queryName, queryValues);
 

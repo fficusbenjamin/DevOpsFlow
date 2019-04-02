@@ -12,35 +12,23 @@ public class DB_Connection {
     and importing data from the database
     Part of singleton design pattern.
     */
-    private String _domain;
     private static DB_Connection instance;
-    public static DB_Connection getInstance(Boolean localhost){
+    public static DB_Connection getInstance(){
         if (instance==null){
-            if (localhost != null)
-            {
-                if (localhost){
-                    instance = new DB_Connection("localhost");
-                }
-            }else{
-                instance = new DB_Connection("");
-            }
-
+            instance = new DB_Connection();
         }
         return instance;
     }
 
     //Constructor
-    private DB_Connection(){
-        this._domain = "";
-    }
-    private DB_Connection(String domain){
-        this._domain = domain;
-    }
+    private DB_Connection(){}
 
     // Connection to the database
     private static Connection con = null;
-    public boolean Connect(){
-
+    public boolean Connect(String domain){
+        if (domain == null){
+            domain = "db";
+        }
         try
         {
             // Load Database driver
@@ -61,14 +49,8 @@ public class DB_Connection {
             {
                 // Wait a bit for db to start
                 Thread.sleep(20000);
-                String url = "";
-                if (this._domain != null){
-                    url = "jdbc:mysql://" + this._domain + "/db:3306/world?useSSL=false&useUnicode=true&characterEncoding=utf-8";
-                }else{
-                    url = "jdbc:mysql://db:3306/world?useSSL=false&useUnicode=true&characterEncoding=utf-8";
-                }
                 // Connect to database
-                con = DriverManager.getConnection(url, "root", "example");
+                con = DriverManager.getConnection("jdbc:mysql://" + domain + ":3306/world?useSSL=false&useUnicode=true&characterEncoding=utf-8", "root", "example");
                 System.out.println("Successfully connected, if it crashes after that then its your fault");
                 // Exit for loop
                 break;
@@ -108,7 +90,7 @@ public class DB_Connection {
         //We make sure we have a working connection
         if (con == null)
         {
-            this.Connect();
+            this.Connect("db");
         }
 
         try

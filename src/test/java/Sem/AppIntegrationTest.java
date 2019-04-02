@@ -28,7 +28,13 @@ public class AppIntegrationTest
     @BeforeAll
     public void init()
     {
-        con = DB_Connection.getInstance(true);
+        con = DB_Connection.getInstance();
+        try {
+            setConnection();
+        }catch (Exception e){
+
+        }
+
     }
 
     //Data structure tests
@@ -78,7 +84,6 @@ public class AppIntegrationTest
     }
     @Test(timeout = 30000)
     public void setConnection() throws InterruptedException {
-        init();
-        con.Connect();
+        con.Connect("localhost");
     }
 }

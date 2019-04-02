@@ -27,7 +27,7 @@ public class UnitTests {
     @BeforeAll
     public void init()
     {
-        con = DB_Connection.getInstance(false);
+        con = DB_Connection.getInstance();
     }
 
     //Data structure tests
