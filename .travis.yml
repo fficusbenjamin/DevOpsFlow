@@ -10,6 +10,9 @@ services:
   - docker
 
 install:
+  - pwd
+  - ls
+  - ls db/
   # Build database image.
   - docker build -t database db/.
   # Run the database image.
