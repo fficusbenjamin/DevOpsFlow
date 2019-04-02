@@ -12,7 +12,7 @@ services:
 install:
   - pwd
   - ls
-  - ls db/
+  - ls src/db/
   # Build database image.
   - docker build -t database src/db/.
   # Run the database image.
