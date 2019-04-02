@@ -11,6 +11,7 @@ import java.util.List;
 
 public class Menu
 {
+    //declarations
     private List<MenuItem> items = new ArrayList<MenuItem>() ;
     private String title ;
 
@@ -19,6 +20,7 @@ public class Menu
         this.title = title ;
     }
 
+    //method to quit the menu
     public Menu doOption( int option )
     {
         if( option == 0 ) return null ;
@@ -34,12 +36,14 @@ public class Menu
         return next == null ? this : next ;
     }
 
+    //method that add itmes to the menu
     public Menu addItem( MenuItem item )
     {
         items.add( item ) ;
         return this ;
     }
 
+    //method that append new items to the actual menu
     public String toString()
     {
         StringBuilder sb = new StringBuilder() ;
@@ -57,12 +61,16 @@ public class Menu
         return sb.toString() ;
     }
 
+    //method that creates the actual menu
     public static Menu createMenuSystem()
     {
+        //item that goes back of one layer
         MenuItem backLink = new MenuItem( "Go back to the previous Menu", null, null ) ;
 
+        //submenu 1
         Menu subMenu1 = new Menu("Country Menu");
 
+        //submenu 1 items
         subMenu1.addItem( new MenuItem("World", null, new ActionListener(){
             public void actionPerformed(ActionEvent e) {
 
@@ -131,6 +139,7 @@ public class Menu
         rootMenu.addItem( new MenuItem( "Enter into the Country section to choose a report to print (Country)", subMenu1, null ) )
                 .addItem( new MenuItem( "Enter into the City section to choose a report to print (City)", subMenu2, null ) )
                 .addItem( new MenuItem( "Enter into the Capital section to choose a report to print (Capital)", subMenu3, null) );
+
 
         // Tie the backlink up
         backLink.setSubMenu( rootMenu ) ;
