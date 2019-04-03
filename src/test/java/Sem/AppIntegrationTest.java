@@ -1,17 +1,13 @@
 package Sem;
 
 
-import BusinessLayer.*;
 import BusinessLayer.DataRow.*;
-import Sem.*;
 import DataLayer.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.TestInstance;
 
-import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
