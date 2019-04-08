@@ -24,9 +24,10 @@ public class AppIntegrationTest
     @BeforeAll
     public void init()
     {
-        return;
-        /* //TODO: Uncomment after deployment setup
+
+         //TODO: Uncomment after deployment setup
         con = DB_Connection.getInstance();
+        /*
         try {
             setConnection();
         }catch (Exception e){
@@ -65,7 +66,7 @@ public class AppIntegrationTest
     @org.junit.Test
     public void setCon()
     {
-        //init(); //TODO: Uncomment after deployment setup
+        con = DB_Connection.getInstance();
         assertNotNull(con);
     }
 
