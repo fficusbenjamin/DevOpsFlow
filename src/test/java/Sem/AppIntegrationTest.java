@@ -70,7 +70,7 @@ public class AppIntegrationTest
     }
 
     private long startAt;
-
+/*
     @Before
     public void before() {
         this.startAt = System.currentTimeMillis();
@@ -81,8 +81,9 @@ public class AppIntegrationTest
         System.out.println(String.format("Timed out after: %1$d ms", System.currentTimeMillis() - startAt));
         System.out.println("Could not connect to the database");
     }
+
     @Test(timeout = 30000)
     public void setConnection() throws InterruptedException {
         return;//con.Connect("localhost"); //TODO: Uncomment after deployment setup
-    }
+    }*/
 }
