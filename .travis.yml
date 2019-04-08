@@ -43,7 +43,7 @@ jobs:
       provider: releases
       api_key: $GITHUB_OAUTH_TOKEN
       # Copy built JAR file.  JAR built in $TRAVIS_BUILD_DIR/
-      file: $TRAVIS_BUILD_DIR/target/seMethods.jar
+      file: $TRAVIS_BUILD_DIR/target/seMethods-0.1.0.2.jar
       skip_cleanup: true
 stages:
 - unit tests
