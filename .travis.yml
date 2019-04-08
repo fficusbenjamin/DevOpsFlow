@@ -1,11 +1,14 @@
 language: java
 sudo: false
-env:
-  global:
-    - CLOUDSDK_CORE_DISABLE_PROMPTS=1
+
 addons:
   hosts:
   - db
+
+env:
+  global:
+    - CLOUDSDK_CORE_DISABLE_PROMPTS=1
+
 services:
 - docker
 install:
@@ -80,6 +83,7 @@ jobs:
       - kubectl run hr --image=gcr.io/${PROJECT_ID}/db --port 3306
       # Expose the cluster to the Internet, mapping external port 3306 to internal port 3306.
       - kubectl expose deployment hr --port=3306 --target-port=3306 --type=LoadBalancer
+
 stages:
 - unit tests
 - integration tests
@@ -89,8 +93,11 @@ stages:
   if: branch = master
 
 after_success:
-  - bash <(curl -s https://codecov.io/bash)
+# Push code coverage data to codecov.
+- bash <(curl -s https://codecov.io/bash)
 
 before_install:
-  - openssl aes-256-cbc -K $encrypted_a1feeff4c407_key -iv $encrypted_a1feeff4c407_iv
+# Decrypts the credentials file.
+# The keyname will be different for your project.
+- openssl aes-256-cbc -K $encrypted_a1feeff4c407_key -iv $encrypted_a1feeff4c407_iv
   -in client-secret.json.enc -out client-secret.json -d
