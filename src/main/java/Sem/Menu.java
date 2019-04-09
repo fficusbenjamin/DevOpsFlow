@@ -15,7 +15,7 @@ public class Menu
 {
     private List<MenuItem> items = new ArrayList<MenuItem>() ;
     private String title ;
-    public static DB_Connection con;
+    public static final DB_Connection con=DB_Connection.getInstance();
     public static SQL_Manager SQLstatement = new SQL_Manager();
 
     public Menu( String title )
@@ -63,8 +63,9 @@ public class Menu
 
     public static Menu createMenuSystem()
     {
-        con = DB_Connection.getInstance();
+
         con.Connect("db",true);
+        ArrayList<String>nameList=new ArrayList<>();
         MenuItem backLink = new MenuItem( "Go back to the previous Menu", null, null ) ;
 
         Menu subMenu1 = new Menu("Country Menu");
