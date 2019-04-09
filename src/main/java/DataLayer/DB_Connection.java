@@ -317,68 +317,26 @@ public class DB_Connection {
 
     }
 
-    public void displayPop (String popQuery, String type)
+    public String displayPop (String popQuery)
     {
+        String result="did not get result for query";
         if (con != null)
         {
+
             try {
                 Statement stmt = con.createStatement();
                 ResultSet rs = stmt.executeQuery(popQuery);
-                while (rs.next())
-                {
-                   // String Name= rs.getString("Name");
-                   // System.out.println(Name);
-                   // String Continent= rs.getString("Continent");
-                   // System.out.println(Continent);
-                   // String Region = rs.getString("Region");
-                   // System.out.println(Region);
-                   // int totalPop= rs.getInt("Total_Population");
-                   // System.out.println(totalPop);
-                  //  int cityPop= rs.getInt("Cities_Population");
-                  //  System.out.println(cityPop);
-                  //  int ruralPop= rs.getInt("Rural_Population");
-                  //  System.out.println(ruralPop);
-                    SQL_Manager population = new SQL_Manager();
-                    switch(type)
-                    {
-                        case "country":
-                            String Name= rs.getString("Name");
-                            int totalPop= rs.getInt("Total_Population");
-                            int cityPop= rs.getInt("Cities_Population");
-                            int ruralPop= rs.getInt("Rural_Population");
-                            String result = String.format("%s %d %d %d", Name, totalPop, cityPop, ruralPop);
-                            System.out.println(result);
-                            break;
-                        case "region":
-                            String Region= rs.getString("Region");
-                            int totalPop2= rs.getInt("Total_Population");
-                            int cityPop2= rs.getInt("Cities_Population");
-                            int ruralPop2= rs.getInt("Rural_Population");
-                            String result2 = String.format("%s %d %d %d", Region, totalPop2, cityPop2, ruralPop2);
-                            System.out.println(result2);
-                            break;
-                        case "continent":
-                            String Continent= rs.getString("Continent");
-                            int totalPop3= rs.getInt("Total_Population");
-                            int cityPop3= rs.getInt("Cities_Population");
-                            int ruralPop3= rs.getInt("Rural_Population");
-                            String result3 = String.format("%s %d %d %d", Continent, totalPop3, cityPop3, ruralPop3);
-                            System.out.println(result3);
-                            break;
-                        default:
-                            System.out.println("Something went very wrong in switch case, type not found");
-                            break;
-                    }
+                rs.next();
+                long Population= rs.getLong("World_Population");
+                result = String.valueOf(Population);
+                return result;
 
-
-
-                }
             } catch (SQLException e) {
                 e.printStackTrace();
+
             }
         }
-
-
+        return result;
     }
 
 }

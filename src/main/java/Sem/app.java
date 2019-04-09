@@ -17,8 +17,20 @@ public class app
     public static DB_Connection con;
     public static void main( String[] args )
     {
+        SQL_Manager SQLstatement = new SQL_Manager();
+        con = DB_Connection.getInstance();
+        con.Connect();
         app application = new app();
         application.init();
+        /*SQL_Manager SQLstatement = new SQL_Manager();
+        con = DB_Connection.getInstance();
+        con.Connect();
+        ArrayList<String> popOptions = new ArrayList<>();
+        popOptions.add("WHERE country.Continent Like 'Europe'");
+        popOptions.add("");
+        con.displayPop(SQLstatement.getQuery("PopulationRow",popOptions));
+        System.out.println("\n\n");
+        */
     }
 
     public boolean init(){

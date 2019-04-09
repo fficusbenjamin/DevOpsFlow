@@ -198,11 +198,100 @@ public class Menu
                     }
                 }) )
                 .addItem( backLink );
+        Menu subMenu4 = new Menu("Population Menu");
+        subMenu4.addItem( new MenuItem("City population for Continent", null, new ActionListener(){
+            public void actionPerformed(ActionEvent e) {
+                con = DB_Connection.getInstance();
+                con.Connect();
+
+            }
+        }) )
+                .addItem( new MenuItem("City population for Region", null, new ActionListener(){
+                    public void actionPerformed(ActionEvent e) {
+                        con = DB_Connection.getInstance();
+                        con.Connect();
+
+                    }
+                }) )
+                .addItem( new MenuItem("City population for Country", null, new ActionListener(){
+                    public void actionPerformed(ActionEvent e) {
+                        con = DB_Connection.getInstance();
+                        con.Connect();
+
+                    }
+                }) )
+                .addItem( new MenuItem("World Population", null, new ActionListener(){
+                    public void actionPerformed(ActionEvent e) {
+                        con = DB_Connection.getInstance();
+                        con.Connect();
+                        ArrayList<String> popOptions = new ArrayList<>();
+                        popOptions.add("");
+                        popOptions.add("");
+                        System.out.println("\nWorld Population is "+con.displayPop(SQLstatement.getQuery("PopulationRow",popOptions))+"\n");
+                        System.out.println("\n\n");
+
+                    }
+                }) )
+                .addItem( new MenuItem("Continent Population", null, new ActionListener(){
+                    public void actionPerformed(ActionEvent e) {
+                        con = DB_Connection.getInstance();
+                        con.Connect();
+                        ArrayList<String> popOptions = new ArrayList<>();
+                        popOptions.add("WHERE country.Continent Like 'Europe'");
+                        popOptions.add("");
+                        System.out.println("\nEurope Population is "+con.displayPop(SQLstatement.getQuery("PopulationRow",popOptions))+"\n");
+                        System.out.println("\n\n");
+
+                    }
+                }) )
+                .addItem( new MenuItem("Region Population", null, new ActionListener(){
+                    public void actionPerformed(ActionEvent e) {
+                        con = DB_Connection.getInstance();
+                        con.Connect();
+                        ArrayList<String> popOptions = new ArrayList<>();
+                        popOptions.add("WHERE country.Region Like 'Southern Europe'");
+                        popOptions.add("");
+                        System.out.println("\nSouthern Europe Population is "+con.displayPop(SQLstatement.getQuery("PopulationRow",popOptions))+"\n");
+                        System.out.println("\n\n");
+
+                    }
+                }) )
+                .addItem( new MenuItem("Country Population", null, new ActionListener(){
+                    public void actionPerformed(ActionEvent e) {
+                        con = DB_Connection.getInstance();
+                        con.Connect();
+
+                    }
+                }) )
+                .addItem( new MenuItem("District Population", null, new ActionListener(){
+                    public void actionPerformed(ActionEvent e) {
+                        con = DB_Connection.getInstance();
+                        con.Connect();
+
+                    }
+                }) )
+                .addItem( new MenuItem("City Population", null, new ActionListener(){
+                    public void actionPerformed(ActionEvent e) {
+                        con = DB_Connection.getInstance();
+                        con.Connect();
+
+                    }
+                }) ).addItem( backLink );
+        Menu subMenu5 = new Menu("Language Report");
+        subMenu5.addItem( new MenuItem("Display Report", null, new ActionListener(){
+            public void actionPerformed(ActionEvent e) {
+                con = DB_Connection.getInstance();
+                con.Connect();
+
+            }
+        }) ).addItem( backLink );
 
         Menu rootMenu = new Menu( "Create a report" ) ;
         rootMenu.addItem( new MenuItem( "Enter into the Country section to choose a report to print (Country)", subMenu1, null ) )
                 .addItem( new MenuItem( "Enter into the City section to choose a report to print (City)", subMenu2, null ) )
-                .addItem( new MenuItem( "Enter into the Capital section to choose a report to print (Capital)", subMenu3, null) );
+                .addItem( new MenuItem( "Enter into the Capital section to choose a report to print (Capital)", subMenu3, null) )
+                .addItem( new MenuItem( "Enter into the Population section to choose a report to print (Capital)", subMenu4, null) )
+                .addItem( new MenuItem( "Language Report", subMenu5, null) );
 
         // Tie the backlink up
         backLink.setSubMenu( rootMenu ) ;
