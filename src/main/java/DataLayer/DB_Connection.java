@@ -391,10 +391,10 @@ public class DB_Connection {
         ArrayList<String> cityValidation= new ArrayList<>();
         try {
             Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT District FROM city");
+            ResultSet rs = stmt.executeQuery("SELECT Name FROM city");
             while (rs.next())
             {
-                String Name= rs.getString("District");
+                String Name= rs.getString("Name");
                 cityValidation.add(Name);
             }
 
