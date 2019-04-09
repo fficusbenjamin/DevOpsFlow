@@ -63,14 +63,15 @@ public class Menu
 
     public static Menu createMenuSystem()
     {
+        con = DB_Connection.getInstance();
+        con.Connect("db",true);
         MenuItem backLink = new MenuItem( "Go back to the previous Menu", null, null ) ;
 
         Menu subMenu1 = new Menu("Country Menu");
 
         subMenu1.addItem( new MenuItem("World", null, new ActionListener(){
             public void actionPerformed(ActionEvent e) {
-                con = DB_Connection.getInstance();
-                con.Connect("db",true);
+
                 ArrayList<String> options = new ArrayList<>();
                 options.add("");
                 options.add("");
@@ -84,8 +85,7 @@ public class Menu
         }) )
                 .addItem( new MenuItem("Continent", null, new ActionListener(){
                     public void actionPerformed(ActionEvent e) {
-                        con = DB_Connection.getInstance();
-                        con.Connect("db",true);
+
                         ArrayList<String> options = new ArrayList<>();
                         options.add("WHERE country.Continent Like 'Europe'");
                         options.add("");
@@ -95,8 +95,7 @@ public class Menu
                 }) )
                 .addItem( new MenuItem("Region", null, new ActionListener(){
                     public void actionPerformed(ActionEvent e) {
-                        con = DB_Connection.getInstance();
-                        con.Connect("db",true);
+
                         ArrayList<String> options = new ArrayList<>();
                         options.add("WHERE country.Region Like 'Southern Europe'");
                         options.add("");
@@ -109,8 +108,7 @@ public class Menu
 
         subMenu2.addItem( new MenuItem("World", null, new ActionListener(){
             public void actionPerformed(ActionEvent e) {
-                con = DB_Connection.getInstance();
-                con.Connect("db",true);
+
                 ArrayList<String> cityOptions = new ArrayList<>();
                 cityOptions.add("");
                 cityOptions.add("");
@@ -120,8 +118,7 @@ public class Menu
         }) )
                 .addItem( new MenuItem("Continent", null, new ActionListener(){
                     public void actionPerformed(ActionEvent e) {
-                        con = DB_Connection.getInstance();
-                        con.Connect("db",true);
+
                         ArrayList<String> cityOptions = new ArrayList<>();
                         cityOptions.add("WHERE country.Continent Like 'Europe'");
                         cityOptions.add("");
@@ -131,8 +128,7 @@ public class Menu
                 }) )
                 .addItem( new MenuItem("Region", null, new ActionListener(){
                     public void actionPerformed(ActionEvent e) {
-                        con = DB_Connection.getInstance();
-                        con.Connect("db",true);
+
                         ArrayList<String> cityOptions = new ArrayList<>();
                         cityOptions.add("WHERE country.Region Like 'Southern Europe'");
                         cityOptions.add("");
@@ -142,8 +138,7 @@ public class Menu
                 }) )
                 .addItem( new MenuItem("Country", null, new ActionListener(){
                     public void actionPerformed(ActionEvent e) {
-                        con = DB_Connection.getInstance();
-                        con.Connect("db",true);
+
                         ArrayList<String> cityOptions = new ArrayList<>();
                         cityOptions.add("WHERE country.Name Like 'France'");
                         cityOptions.add("");
@@ -153,8 +148,7 @@ public class Menu
                 }) )
                 .addItem( new MenuItem("District", null, new ActionListener(){
                     public void actionPerformed(ActionEvent e) {
-                        con = DB_Connection.getInstance();
-                        con.Connect("db",true);
+
                         ArrayList<String> cityOptions = new ArrayList<>();
                         cityOptions.add("WHERE city.District Like 'Noord-Holland'");
                         cityOptions.add("");
@@ -167,8 +161,7 @@ public class Menu
 
         subMenu3.addItem( new MenuItem("World", null, new ActionListener(){
             public void actionPerformed(ActionEvent e) {
-                con = DB_Connection.getInstance();
-                con.Connect("db",true);
+
                 ArrayList<String> capitalOptions = new ArrayList<>();
                 capitalOptions.add("");
                 capitalOptions.add("");
@@ -178,8 +171,7 @@ public class Menu
         }) )
                 .addItem( new MenuItem("Continent", null, new ActionListener(){
                     public void actionPerformed(ActionEvent e) {
-                        con = DB_Connection.getInstance();
-                        con.Connect("db",true);
+
                         ArrayList<String> capitalOptions = new ArrayList<>();
                         capitalOptions.add("WHERE country.Continent Like 'Europe'");
                         capitalOptions.add("");
@@ -189,8 +181,7 @@ public class Menu
                 }) )
                 .addItem( new MenuItem("Region", null, new ActionListener(){
                     public void actionPerformed(ActionEvent e) {
-                        con = DB_Connection.getInstance();
-                        con.Connect("db",true);
+
                         ArrayList<String> capitalOptions = new ArrayList<>();
                         capitalOptions.add("WHERE country.Region Like 'Southern Europe'");
                         capitalOptions.add("");
@@ -202,29 +193,25 @@ public class Menu
         Menu subMenu4 = new Menu("Population Menu");
         subMenu4.addItem( new MenuItem("City population for Continent", null, new ActionListener(){
             public void actionPerformed(ActionEvent e) {
-                con = DB_Connection.getInstance();
-                con.Connect("db",true);
+
 
             }
         }) )
                 .addItem( new MenuItem("City population for Region", null, new ActionListener(){
                     public void actionPerformed(ActionEvent e) {
-                        con = DB_Connection.getInstance();
-                        con.Connect("db",true);
+
 
                     }
                 }) )
                 .addItem( new MenuItem("City population for Country", null, new ActionListener(){
                     public void actionPerformed(ActionEvent e) {
-                        con = DB_Connection.getInstance();
-                        con.Connect("db",true);
+
 
                     }
                 }) )
                 .addItem( new MenuItem("World Population", null, new ActionListener(){
                     public void actionPerformed(ActionEvent e) {
-                        con = DB_Connection.getInstance();
-                        con.Connect("db",true);
+
                         ArrayList<String> popOptions = new ArrayList<>();
                         popOptions.add("");
                         popOptions.add("");
@@ -235,8 +222,7 @@ public class Menu
                 }) )
                 .addItem( new MenuItem("Continent Population", null, new ActionListener(){
                     public void actionPerformed(ActionEvent e) {
-                        con = DB_Connection.getInstance();
-                        con.Connect("db",true);
+
                         String continent="";
                         System.out.println("Please put in name of the Country");
                         try {
@@ -261,8 +247,7 @@ public class Menu
                 }) )
                 .addItem( new MenuItem("Region Population", null, new ActionListener(){
                     public void actionPerformed(ActionEvent e) {
-                        con = DB_Connection.getInstance();
-                        con.Connect("db",true);
+
                         String region="";
                         System.out.println("Please put in name of the Country");
                         try {
@@ -287,8 +272,7 @@ public class Menu
                 }) )
                 .addItem( new MenuItem("Country Population", null, new ActionListener(){
                     public void actionPerformed(ActionEvent e) {
-                        con = DB_Connection.getInstance();
-                        con.Connect("db",true);
+
                         String country="";
                         System.out.println("Please put in name of the Country");
                         try {
@@ -313,8 +297,7 @@ public class Menu
                 }) )
                 .addItem( new MenuItem("District Population", null, new ActionListener(){
                     public void actionPerformed(ActionEvent e) {
-                        con = DB_Connection.getInstance();
-                        con.Connect("db",true);
+
                         String district="";
                         System.out.println("Please put in name of the Country");
                         try {
@@ -339,8 +322,7 @@ public class Menu
                 }) )
                 .addItem( new MenuItem("City Population", null, new ActionListener(){
                     public void actionPerformed(ActionEvent e) {
-                        con = DB_Connection.getInstance();
-                        con.Connect("db",true);
+
                         String city="";
                         System.out.println("Please put in name of the Country");
                         try {
@@ -366,8 +348,7 @@ public class Menu
         Menu subMenu5 = new Menu("Language Report");
         subMenu5.addItem( new MenuItem("Display Report", null, new ActionListener(){
             public void actionPerformed(ActionEvent e) {
-                con = DB_Connection.getInstance();
-                con.Connect("db",true);
+
 
             }
         }) ).addItem( backLink );
