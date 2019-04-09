@@ -2,6 +2,7 @@ package Sem;
 
 import BusinessLayer.MenuItem;
 import BusinessLayer.SQL_Manager;
+import DataLayer.DB_Connection;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,16 +12,16 @@ import java.util.List;
 
 public class Menu
 {
-    //declarations
     private List<MenuItem> items = new ArrayList<MenuItem>() ;
     private String title ;
+    public static DB_Connection con;
+    public static SQL_Manager SQLstatement = new SQL_Manager();
 
     public Menu( String title )
     {
         this.title = title ;
     }
 
-    //method to quit the menu
     public Menu doOption( int option )
     {
         if( option == 0 ) return null ;
@@ -36,14 +37,12 @@ public class Menu
         return next == null ? this : next ;
     }
 
-    //method that add itmes to the menu
     public Menu addItem( MenuItem item )
     {
         items.add( item ) ;
         return this ;
     }
 
-    //method that append new items to the actual menu
     public String toString()
     {
         StringBuilder sb = new StringBuilder() ;
@@ -61,41 +60,47 @@ public class Menu
         return sb.toString() ;
     }
 
-    //method that creates the actual menu
     public static Menu createMenuSystem()
     {
-        //item that goes back of one layer
         MenuItem backLink = new MenuItem( "Go back to the previous Menu", null, null ) ;
 
-        //submenu 1
         Menu subMenu1 = new Menu("Country Menu");
 
-        //submenu 1 items
         subMenu1.addItem( new MenuItem("World", null, new ActionListener(){
             public void actionPerformed(ActionEvent e) {
-
-                System.out.println("world menus is called");
-                SQL_Manager SQLstatement = new SQL_Manager();
-
-
+                con = DB_Connection.getInstance();
+                con.Connect("db",true);
                 ArrayList<String> options = new ArrayList<>();
-                options.add("WHERE Population > 1");
-                //options.add("");
-                SQLstatement.query_db("countryQuery", options);
+                options.add("");
+                options.add("");
+                con.displayCountry(SQLstatement.getQuery("CountryRow",options));
+                System.out.println("\n\n");
 
-
+                System.out.println("world menus is called- this time only poland");
 
 
             }
         }) )
                 .addItem( new MenuItem("Continent", null, new ActionListener(){
                     public void actionPerformed(ActionEvent e) {
-                        //code for the actual query
+                        con = DB_Connection.getInstance();
+                        con.Connect("db",true);
+                        ArrayList<String> options = new ArrayList<>();
+                        options.add("WHERE country.Continent Like 'Europe'");
+                        options.add("");
+                        con.displayCountry(SQLstatement.getQuery("CountryRow",options));
+                        System.out.println("\n\n");
                     }
                 }) )
                 .addItem( new MenuItem("Region", null, new ActionListener(){
                     public void actionPerformed(ActionEvent e) {
-                        //code for the actual query
+                        con = DB_Connection.getInstance();
+                        con.Connect("db",true);
+                        ArrayList<String> options = new ArrayList<>();
+                        options.add("WHERE country.Region Like 'Southern Europe'");
+                        options.add("");
+                        con.displayCountry(SQLstatement.getQuery("CountryRow",options));
+                        System.out.println("\n\n");
                     }
                 }) ).addItem( backLink );
 
@@ -103,17 +108,57 @@ public class Menu
 
         subMenu2.addItem( new MenuItem("World", null, new ActionListener(){
             public void actionPerformed(ActionEvent e) {
-                //code for the actual query
+                con = DB_Connection.getInstance();
+                con.Connect("db",true);
+                ArrayList<String> cityOptions = new ArrayList<>();
+                cityOptions.add("");
+                cityOptions.add("");
+                con.displayCity(SQLstatement.getQuery("CityRow",cityOptions));
+                System.out.println("\n\n");
             }
         }) )
                 .addItem( new MenuItem("Continent", null, new ActionListener(){
                     public void actionPerformed(ActionEvent e) {
-                        //code for the actual query
+                        con = DB_Connection.getInstance();
+                        con.Connect("db",true);
+                        ArrayList<String> cityOptions = new ArrayList<>();
+                        cityOptions.add("WHERE country.Continent Like 'Europe'");
+                        cityOptions.add("");
+                        con.displayCity(SQLstatement.getQuery("CityRow",cityOptions));
+                        System.out.println("\n\n");
                     }
                 }) )
                 .addItem( new MenuItem("Region", null, new ActionListener(){
                     public void actionPerformed(ActionEvent e) {
-                        //code for the actual query
+                        con = DB_Connection.getInstance();
+                        con.Connect("db",true);
+                        ArrayList<String> cityOptions = new ArrayList<>();
+                        cityOptions.add("WHERE country.Region Like 'Southern Europe'");
+                        cityOptions.add("");
+                        con.displayCity(SQLstatement.getQuery("CityRow",cityOptions));
+                        System.out.println("\n\n");
+                    }
+                }) )
+                .addItem( new MenuItem("Country", null, new ActionListener(){
+                    public void actionPerformed(ActionEvent e) {
+                        con = DB_Connection.getInstance();
+                        con.Connect("db",true);
+                        ArrayList<String> cityOptions = new ArrayList<>();
+                        cityOptions.add("WHERE country.Name Like 'France'");
+                        cityOptions.add("");
+                        con.displayCity(SQLstatement.getQuery("CityRow",cityOptions));
+                        System.out.println("\n\n");
+                    }
+                }) )
+                .addItem( new MenuItem("District", null, new ActionListener(){
+                    public void actionPerformed(ActionEvent e) {
+                        con = DB_Connection.getInstance();
+                        con.Connect("db",true);
+                        ArrayList<String> cityOptions = new ArrayList<>();
+                        cityOptions.add("WHERE city.District Like 'Noord-Holland'");
+                        cityOptions.add("");
+                        con.displayCity(SQLstatement.getQuery("CityRow",cityOptions));
+                        System.out.println("\n\n");
                     }
                 }) ).addItem( backLink );
 
@@ -121,25 +166,132 @@ public class Menu
 
         subMenu3.addItem( new MenuItem("World", null, new ActionListener(){
             public void actionPerformed(ActionEvent e) {
-                //code for the actual query
+                con = DB_Connection.getInstance();
+                con.Connect("db",true);
+                ArrayList<String> capitalOptions = new ArrayList<>();
+                capitalOptions.add("");
+                capitalOptions.add("");
+                con.displayCapital(SQLstatement.getQuery("CapitalCityRow",capitalOptions));
+                System.out.println("\n\n");
             }
         }) )
                 .addItem( new MenuItem("Continent", null, new ActionListener(){
                     public void actionPerformed(ActionEvent e) {
-                        //code for the actual query
+                        con = DB_Connection.getInstance();
+                        con.Connect("db",true);
+                        ArrayList<String> capitalOptions = new ArrayList<>();
+                        capitalOptions.add("WHERE country.Continent Like 'Europe'");
+                        capitalOptions.add("");
+                        con.displayCapital(SQLstatement.getQuery("CapitalCityRow",capitalOptions));
+                        System.out.println("\n\n");
                     }
                 }) )
                 .addItem( new MenuItem("Region", null, new ActionListener(){
                     public void actionPerformed(ActionEvent e) {
-                        //code for the actual query
+                        con = DB_Connection.getInstance();
+                        con.Connect("db",true);
+                        ArrayList<String> capitalOptions = new ArrayList<>();
+                        capitalOptions.add("WHERE country.Region Like 'Southern Europe'");
+                        capitalOptions.add("");
+                        con.displayCapital(SQLstatement.getQuery("CapitalCityRow",capitalOptions));
+                        System.out.println("\n\n");
+                    }
+                }) )
+                .addItem( backLink );
+        Menu subMenu4 = new Menu("Population Menu");
+        subMenu4.addItem( new MenuItem("City population for Continent", null, new ActionListener(){
+            public void actionPerformed(ActionEvent e) {
+                con = DB_Connection.getInstance();
+                con.Connect("db",true);
+
+            }
+        }) )
+                .addItem( new MenuItem("City population for Region", null, new ActionListener(){
+                    public void actionPerformed(ActionEvent e) {
+                        con = DB_Connection.getInstance();
+                        con.Connect("db",true);
+
+                    }
+                }) )
+                .addItem( new MenuItem("City population for Country", null, new ActionListener(){
+                    public void actionPerformed(ActionEvent e) {
+                        con = DB_Connection.getInstance();
+                        con.Connect("db",true);
+
+                    }
+                }) )
+                .addItem( new MenuItem("World Population", null, new ActionListener(){
+                    public void actionPerformed(ActionEvent e) {
+                        con = DB_Connection.getInstance();
+                        con.Connect("db",true);
+                        ArrayList<String> popOptions = new ArrayList<>();
+                        popOptions.add("");
+                        popOptions.add("");
+                        System.out.println("\nWorld Population is "+con.displayPop(SQLstatement.getQuery("PopulationRow",popOptions))+"\n");
+                        System.out.println("\n\n");
+
+                    }
+                }) )
+                .addItem( new MenuItem("Continent Population", null, new ActionListener(){
+                    public void actionPerformed(ActionEvent e) {
+                        con = DB_Connection.getInstance();
+                        con.Connect("db",true);
+                        ArrayList<String> popOptions = new ArrayList<>();
+                        popOptions.add("WHERE country.Continent Like 'Europe'");
+                        popOptions.add("");
+                        System.out.println("\nEurope Population is "+con.displayPop(SQLstatement.getQuery("PopulationRow",popOptions))+"\n");
+                        System.out.println("\n\n");
+
+                    }
+                }) )
+                .addItem( new MenuItem("Region Population", null, new ActionListener(){
+                    public void actionPerformed(ActionEvent e) {
+                        con = DB_Connection.getInstance();
+                        con.Connect("db",true);
+                        ArrayList<String> popOptions = new ArrayList<>();
+                        popOptions.add("WHERE country.Region Like 'Southern Europe'");
+                        popOptions.add("");
+                        System.out.println("\nSouthern Europe Population is "+con.displayPop(SQLstatement.getQuery("PopulationRow",popOptions))+"\n");
+                        System.out.println("\n\n");
+
+                    }
+                }) )
+                .addItem( new MenuItem("Country Population", null, new ActionListener(){
+                    public void actionPerformed(ActionEvent e) {
+                        con = DB_Connection.getInstance();
+                        con.Connect("db",true);
+
+                    }
+                }) )
+                .addItem( new MenuItem("District Population", null, new ActionListener(){
+                    public void actionPerformed(ActionEvent e) {
+                        con = DB_Connection.getInstance();
+                        con.Connect("db",true);
+
+                    }
+                }) )
+                .addItem( new MenuItem("City Population", null, new ActionListener(){
+                    public void actionPerformed(ActionEvent e) {
+                        con = DB_Connection.getInstance();
+                        con.Connect("db",true);
+
                     }
                 }) ).addItem( backLink );
+        Menu subMenu5 = new Menu("Language Report");
+        subMenu5.addItem( new MenuItem("Display Report", null, new ActionListener(){
+            public void actionPerformed(ActionEvent e) {
+                con = DB_Connection.getInstance();
+                con.Connect("db",true);
+
+            }
+        }) ).addItem( backLink );
 
         Menu rootMenu = new Menu( "Create a report" ) ;
         rootMenu.addItem( new MenuItem( "Enter into the Country section to choose a report to print (Country)", subMenu1, null ) )
                 .addItem( new MenuItem( "Enter into the City section to choose a report to print (City)", subMenu2, null ) )
-                .addItem( new MenuItem( "Enter into the Capital section to choose a report to print (Capital)", subMenu3, null) );
-
+                .addItem( new MenuItem( "Enter into the Capital section to choose a report to print (Capital)", subMenu3, null) )
+                .addItem( new MenuItem( "Enter into the Population section to choose a report to print (Capital)", subMenu4, null) )
+                .addItem( new MenuItem( "Language Report", subMenu5, null) );
 
         // Tie the backlink up
         backLink.setSubMenu( rootMenu ) ;
