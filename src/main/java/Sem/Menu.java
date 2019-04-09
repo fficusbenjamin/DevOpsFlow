@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.io.InputStreamReader;
 
 public class Menu
 {
@@ -260,6 +261,25 @@ public class Menu
                     public void actionPerformed(ActionEvent e) {
                         con = DB_Connection.getInstance();
                         con.Connect("db",true);
+                        String country="";
+                        System.out.println("Please put in name of the Country");
+                        try {
+                            BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+                            country = input.readLine() ;
+                            ArrayList<String>nameList=new ArrayList<>();
+                            nameList=con.getCountries();
+                            if(nameList.contains(country))
+                            {
+                                ArrayList<String>countryOption = new ArrayList<>();
+                                countryOption.add("Where country.Name Like '"+country+"'");
+                                System.out.println(country+" Population is "+con.displayPop(SQLstatement.getQuery("PopulationRow",countryOption)));
+
+                            }
+
+                        }catch( Exception ex )
+                        {
+                            System.out.println( "No such country as " + country ) ;
+                        }
 
                     }
                 }) )

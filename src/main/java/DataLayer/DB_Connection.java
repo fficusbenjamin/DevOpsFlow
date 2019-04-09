@@ -4,6 +4,7 @@ import BusinessLayer.DataRow.*;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class DB_Connection {
     /*
@@ -301,7 +302,7 @@ public class DB_Connection {
                 Statement stmt = con.createStatement();
                 ResultSet rs = stmt.executeQuery(popQuery);
                 rs.next();
-                long Population= rs.getLong("World_Population");
+                long Population= rs.getLong("Population");
                 result = String.valueOf(Population);
                 return result;
 
@@ -311,5 +312,23 @@ public class DB_Connection {
             }
         }
         return result;
+    }
+    public ArrayList<String> getCountries()
+    {
+        ArrayList<String> countryValidation= new ArrayList<>();
+        try {
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT Name FROM country");
+            while (rs.next())
+            {
+                String Name= rs.getString("Name");
+                countryValidation.add(Name);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        }
+        return countryValidation;
     }
 }
