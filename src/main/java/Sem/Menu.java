@@ -237,11 +237,25 @@ public class Menu
                     public void actionPerformed(ActionEvent e) {
                         con = DB_Connection.getInstance();
                         con.Connect("db",true);
-                        ArrayList<String> popOptions = new ArrayList<>();
-                        popOptions.add("WHERE country.Continent Like 'Europe'");
-                        popOptions.add("");
-                        System.out.println("\nEurope Population is "+con.displayPop(SQLstatement.getQuery("PopulationRow",popOptions))+"\n");
-                        System.out.println("\n\n");
+                        String continent="";
+                        System.out.println("Please put in name of the Country");
+                        try {
+                            BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+                            continent = input.readLine() ;
+                            ArrayList<String>nameList=new ArrayList<>();
+                            nameList=con.getContinents();
+                            if(nameList.contains(continent))
+                            {
+                                ArrayList<String>countryOption = new ArrayList<>();
+                                countryOption.add("Where country.Continent Like '"+continent+"'");
+                                System.out.println(continent+" Population is "+con.displayPop(SQLstatement.getQuery("PopulationRow",countryOption)));
+
+                            }
+
+                        }catch( Exception ex )
+                        {
+                            System.out.println( "No such Region as " + continent ) ;
+                        }
 
                     }
                 }) )
@@ -249,11 +263,25 @@ public class Menu
                     public void actionPerformed(ActionEvent e) {
                         con = DB_Connection.getInstance();
                         con.Connect("db",true);
-                        ArrayList<String> popOptions = new ArrayList<>();
-                        popOptions.add("WHERE country.Region Like 'Southern Europe'");
-                        popOptions.add("");
-                        System.out.println("\nSouthern Europe Population is "+con.displayPop(SQLstatement.getQuery("PopulationRow",popOptions))+"\n");
-                        System.out.println("\n\n");
+                        String region="";
+                        System.out.println("Please put in name of the Country");
+                        try {
+                            BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+                            region = input.readLine() ;
+                            ArrayList<String>nameList=new ArrayList<>();
+                            nameList=con.getRegions();
+                            if(nameList.contains(region))
+                            {
+                                ArrayList<String>countryOption = new ArrayList<>();
+                                countryOption.add("Where country.Region Like '"+region+"'");
+                                System.out.println(region+" Population is "+con.displayPop(SQLstatement.getQuery("PopulationRow",countryOption)));
+
+                            }
+
+                        }catch( Exception ex )
+                        {
+                            System.out.println( "No such Region as " + region ) ;
+                        }
 
                     }
                 }) )
@@ -287,6 +315,25 @@ public class Menu
                     public void actionPerformed(ActionEvent e) {
                         con = DB_Connection.getInstance();
                         con.Connect("db",true);
+                        String district="";
+                        System.out.println("Please put in name of the Country");
+                        try {
+                            BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+                            district = input.readLine() ;
+                            ArrayList<String>nameList=new ArrayList<>();
+                            nameList=con.getDistricts();
+                            if(nameList.contains(district))
+                            {
+                                ArrayList<String>countryOption = new ArrayList<>();
+                                countryOption.add("Where city.District Like '"+district+"'");
+                                System.out.println(district+" Population is "+con.displayPop(SQLstatement.getQuery("CityPopRow",countryOption)));
+
+                            }
+
+                        }catch( Exception ex )
+                        {
+                            System.out.println( "No such Region as " + district ) ;
+                        }
 
                     }
                 }) )
@@ -294,6 +341,25 @@ public class Menu
                     public void actionPerformed(ActionEvent e) {
                         con = DB_Connection.getInstance();
                         con.Connect("db",true);
+                        String city="";
+                        System.out.println("Please put in name of the Country");
+                        try {
+                            BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+                            city = input.readLine() ;
+                            ArrayList<String>nameList=new ArrayList<>();
+                            nameList=con.getCities();
+                            if(nameList.contains(city))
+                            {
+                                ArrayList<String>countryOption = new ArrayList<>();
+                                countryOption.add("Where city.Name Like '"+city+"'");
+                                System.out.println(city+" Population is "+con.displayPop(SQLstatement.getQuery("CityPopRow",countryOption)));
+
+                            }
+
+                        }catch( Exception ex )
+                        {
+                            System.out.println( "No such Region as " + city ) ;
+                        }
 
                     }
                 }) ).addItem( backLink );

@@ -313,6 +313,7 @@ public class DB_Connection {
         }
         return result;
     }
+
     public ArrayList<String> getCountries()
     {
         ArrayList<String> countryValidation= new ArrayList<>();
@@ -330,5 +331,77 @@ public class DB_Connection {
 
         }
         return countryValidation;
+    }
+    public ArrayList<String> getContinents()
+    {
+        ArrayList<String> continentValidation= new ArrayList<>();
+        try {
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT Continent FROM country");
+            while (rs.next())
+            {
+                String Name= rs.getString("Continent");
+                continentValidation.add(Name);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        }
+        return continentValidation;
+    }
+    public ArrayList<String> getRegions()
+    {
+        ArrayList<String> regionValidation= new ArrayList<>();
+        try {
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT Region FROM country");
+            while (rs.next())
+            {
+                String Name= rs.getString("Region");
+                regionValidation.add(Name);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        }
+        return regionValidation;
+    }
+    public ArrayList<String> getDistricts()
+    {
+        ArrayList<String> districtValidation= new ArrayList<>();
+        try {
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT District FROM city");
+            while (rs.next())
+            {
+                String Name= rs.getString("District");
+                districtValidation.add(Name);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        }
+        return districtValidation;
+    }
+    public ArrayList<String> getCities()
+    {
+        ArrayList<String> cityValidation= new ArrayList<>();
+        try {
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT District FROM city");
+            while (rs.next())
+            {
+                String Name= rs.getString("District");
+                cityValidation.add(Name);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        }
+        return cityValidation;
     }
 }
