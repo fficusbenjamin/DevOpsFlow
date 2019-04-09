@@ -54,7 +54,8 @@ public class DB_Connection {
                     port += "0";
                 }
                 // Connect to database
-                con = DriverManager.getConnection("jdbc:mysql://" + domain + ":" + port +"/world?useSSL=false&useUnicode=true&characterEncoding=utf-8", "root", "example");
+                con = DriverManager.getConnection("jdbc:mysql://35.242.134.40:3306/world?useSSL=false&useUnicode=true&characterEncoding=utf-8", "root", "example");
+                //con = DriverManager.getConnection("jdbc:mysql://" + domain + ":" + port +"/world?useSSL=false&useUnicode=true&characterEncoding=utf-8", "root", "example");
                 System.out.println("Successfully connected, if it crashes after that then its your fault");
                 // Exit for loop
                 break;
