@@ -79,7 +79,7 @@ public class Menu
                 con.displayCountry(SQLstatement.getQuery("CountryRow",options));
                 System.out.println("\n\n");
 
-                System.out.println("world menus is called- this time only poland");
+                System.out.println("world menus is called");
 
 
             }
@@ -87,21 +87,63 @@ public class Menu
                 .addItem( new MenuItem("Continent", null, new ActionListener(){
                     public void actionPerformed(ActionEvent e) {
 
-                        ArrayList<String> options = new ArrayList<>();
-                        options.add("WHERE country.Continent Like 'Europe'");
-                        options.add("");
-                        con.displayCountry(SQLstatement.getQuery("CountryRow",options));
-                        System.out.println("\n\n");
+                        String continent="";
+                        System.out.println("Please put in name of the Continent");
+                        try {
+                            BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+                            continent = input.readLine() ;
+                            ArrayList<String>nameList=new ArrayList<>();
+                            nameList=con.getContinents();
+                            if(nameList.contains(continent))
+                            {
+                                ArrayList<String>countryOption = new ArrayList<>();
+                                countryOption.add("WHERE country.Continent LIKE '"+ continent +"'");
+                                countryOption.add("");
+                                System.out.println(continent+"'s Countries Populations are as follows:");
+                                System.out.println("\n\n");
+                                con.displayCountry(SQLstatement.getQuery("CountryRow", countryOption));
+                                System.out.println("\n\n");
+
+
+                            }
+
+                        }catch( Exception ex )
+                        {
+                            System.out.println( "No such Region as " + continent ) ;
+                        }
+
+
                     }
                 }) )
                 .addItem( new MenuItem("Region", null, new ActionListener(){
                     public void actionPerformed(ActionEvent e) {
 
-                        ArrayList<String> options = new ArrayList<>();
-                        options.add("WHERE country.Region Like 'Southern Europe'");
-                        options.add("");
-                        con.displayCountry(SQLstatement.getQuery("CountryRow",options));
-                        System.out.println("\n\n");
+                        String region="";
+                        System.out.println("Please put in name of the Region");
+                        try {
+                            BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+                            region = input.readLine() ;
+                            ArrayList<String>nameList=new ArrayList<>();
+                            nameList=con.getRegions();
+                            if(nameList.contains(region))
+                            {
+                                ArrayList<String>countryOption = new ArrayList<>();
+                                countryOption.add("WHERE country.Region LIKE '"+ region +"'");
+                                countryOption.add("");
+                                System.out.println(region+"'s Countries Populations are as follows:");
+                                System.out.println("\n\n");
+                                con.displayCountry(SQLstatement.getQuery("CountryRow", countryOption));
+                                System.out.println("\n\n");
+
+
+                            }
+
+                        }catch( Exception ex )
+                        {
+                            System.out.println( "No such Region as " + region ) ;
+                        }
+
+
                     }
                 }) ).addItem( backLink );
 
@@ -120,21 +162,62 @@ public class Menu
                 .addItem( new MenuItem("Continent", null, new ActionListener(){
                     public void actionPerformed(ActionEvent e) {
 
-                        ArrayList<String> cityOptions = new ArrayList<>();
-                        cityOptions.add("WHERE country.Continent Like 'Europe'");
-                        cityOptions.add("");
-                        con.displayCity(SQLstatement.getQuery("CityRow",cityOptions));
-                        System.out.println("\n\n");
+                        String continent="";
+                        System.out.println("Please put in name of the Continent");
+                        try {
+                            BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+                            continent = input.readLine() ;
+                            ArrayList<String>nameList=new ArrayList<>();
+                            nameList=con.getContinents();
+                            if(nameList.contains(continent))
+                            {
+                                ArrayList<String>cityOption = new ArrayList<>();
+                                cityOption.add("WHERE country.Continent LIKE '"+ continent +"'");
+                                cityOption.add("");
+                                System.out.println(continent+"'s Cities Populations are as follows:");
+                                System.out.println("\n\n");
+                                con.displayCity(SQLstatement.getQuery("CityRow", cityOption));
+                                System.out.println("\n\n");
+
+
+                            }
+
+                        }catch( Exception ex )
+                        {
+                            System.out.println( "No such Region as " + continent ) ;
+                        }
+
                     }
                 }) )
                 .addItem( new MenuItem("Region", null, new ActionListener(){
                     public void actionPerformed(ActionEvent e) {
 
-                        ArrayList<String> cityOptions = new ArrayList<>();
-                        cityOptions.add("WHERE country.Region Like 'Southern Europe'");
-                        cityOptions.add("");
-                        con.displayCity(SQLstatement.getQuery("CityRow",cityOptions));
-                        System.out.println("\n\n");
+                        String region="";
+                        System.out.println("Please put in name of the Continent");
+                        try {
+                            BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+                            region = input.readLine() ;
+                            ArrayList<String>nameList=new ArrayList<>();
+                            nameList=con.getRegions();
+                            if(nameList.contains(region))
+                            {
+                                ArrayList<String>cityOption = new ArrayList<>();
+                                cityOption.add("WHERE country.Region LIKE '"+ region +"'");
+                                cityOption.add("");
+                                System.out.println(region+"'s Cities Populations are as follows:");
+                                System.out.println("\n\n");
+                                con.displayCity(SQLstatement.getQuery("CityRow", cityOption));
+                                System.out.println("\n\n");
+
+
+                            }
+
+                        }catch( Exception ex )
+                        {
+                            System.out.println( "No such Region as " + region ) ;
+                        }
+
+
                     }
                 }) )
                 .addItem( new MenuItem("Country", null, new ActionListener(){
@@ -300,7 +383,7 @@ public class Menu
                     public void actionPerformed(ActionEvent e) {
 
                         String district="";
-                        System.out.println("Please put in name of the Country");
+                        System.out.println("Please put in name of the District");
                         try {
                             BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
                             district = input.readLine() ;
@@ -316,7 +399,7 @@ public class Menu
 
                         }catch( Exception ex )
                         {
-                            System.out.println( "No such Region as " + district ) ;
+                            System.out.println( "No such District as " + district ) ;
                         }
 
                     }
@@ -325,7 +408,7 @@ public class Menu
                     public void actionPerformed(ActionEvent e) {
 
                         String city="";
-                        System.out.println("Please put in name of the Country");
+                        System.out.println("Please put in name of the City");
                         try {
                             BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
                             city = input.readLine() ;
@@ -341,7 +424,7 @@ public class Menu
 
                         }catch( Exception ex )
                         {
-                            System.out.println( "No such Region as " + city ) ;
+                            System.out.println( "No such City as " + city ) ;
                         }
 
                     }

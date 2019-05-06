@@ -19,10 +19,10 @@ public class SQL_Manager {
     {
         // All Queries have two kinds of variables, which refer to Where and Limit Clauses- both of which may be- or may not be present in final query
         //Initialise all query templates
-        queries.put("countryQuery","SELECT Name, Code, Continent, Region, Population, Capital FROM country %s ORDER BY Population DESC;");
+        //queries.put("countryQuery","SELECT Name, Code, Continent, Region, Population, Capital FROM country %s ORDER BY Population DESC;");
         queries.put("CountryRow","SELECT country.Name AS 'Name',country.Code AS 'Code',country.Continent AS 'Continent',country.Region AS 'Region',country.Population AS 'Population',city.Name AS 'Capital' FROM city JOIN country on city.ID=country.Capital %s ORDER BY country.Population DESC %s;");
-        queries.put("CityRow","SELECT city.Name AS 'Name',country.Name AS 'Country',city.District AS 'District',city.Population AS 'Population' FROM city JOIN country ON city.CountryCode=country.Code %s ORDER BY Population DESC %s;");
-        queries.put("CapitalCityRow","SELECT city.Name AS 'Name',country.Name AS 'Country',city.Population AS 'Population' FROM city JOIN country ON city.ID=country.Capital %s ORDER BY city.Population DESC %s");
+        queries.put("CityRow","SELECT city.Name AS 'Name',country.Name AS 'Country',country.Continent AS 'Continent',country.Region AS 'Region',city.District AS 'District',city.Population AS 'Population' FROM city JOIN country ON city.CountryCode=country.Code %s ORDER BY Population DESC %s;");
+        queries.put("CapitalCityRow","SELECT city.Name AS 'Name',country.Name AS 'Country',city.Population AS 'Population' FROM city JOIN country ON city.ID=country.Capital %s ORDER BY city.Population DESC %s;");
         //Reports require two string inputs (or null 1st input is Where clause, second input is Limit clause)
         // queries.put("PopulationRow","SELECT country.Continent AS 'Continent',country.Region AS 'Region',country.Name AS 'Name',SUM(country.Population) AS 'Total_Population',SUM(city.Population) AS 'Cities_Population',SUM(country.Population - city.Population) AS 'Rural_Population' FROM country JOIN city ON country.code=city.CountryCode %s GROUP BY 'Total_Population','Cities_Population','Rural_Population' %s");
         queries.put("PopulationRow","SELECT SUM(country.Population) AS 'Population' FROM country %s");
