@@ -7,6 +7,7 @@ import DataLayer.DB_Connection;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.io.InputStreamReader;
@@ -74,12 +75,25 @@ public class Menu
             public void actionPerformed(ActionEvent e) {
 
                 ArrayList<String> options = new ArrayList<>();
+                BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
                 options.add("");
-                options.add("");
-                con.displayCountry(SQLstatement.getQuery("CountryRow",options));
-                System.out.println("\n\n");
+                System.out.println("If you would like to limit number of results, please put in to how many top results by population");
+                try {
+                    String limit = input.readLine();
+                    if (Integer.valueOf(limit)==0){
+                        options.add("");
+                    }else
+                    {
+                        options.add("LIMIT "+Integer.valueOf(limit));
+                    }
+                    con.displayCountry(SQLstatement.getQuery("CountryRow",options));
+                    System.out.println("\n\n");
 
-                System.out.println("world menus is called");
+                    System.out.println("world menus is called");
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+
 
 
             }
@@ -98,7 +112,14 @@ public class Menu
                             {
                                 ArrayList<String>countryOption = new ArrayList<>();
                                 countryOption.add("WHERE country.Continent LIKE '"+ continent +"'");
-                                countryOption.add("");
+                                System.out.println("If you would like to limit number of results, please put in to how many top results by population");
+                                String limit= input.readLine();
+                                if (Integer.valueOf(limit) == 0){
+                                    countryOption.add("");
+                                }else
+                                {
+                                    countryOption.add("LIMIT "+limit);
+                                }
                                 System.out.println(continent+"'s Countries Populations are as follows:");
                                 System.out.println("\n\n");
                                 con.displayCountry(SQLstatement.getQuery("CountryRow", countryOption));
@@ -123,13 +144,20 @@ public class Menu
                         try {
                             BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
                             region = input.readLine() ;
-                            ArrayList<String>nameList=new ArrayList<>();
+                            ArrayList<String>nameList;
                             nameList=con.getRegions();
                             if(nameList.contains(region))
                             {
                                 ArrayList<String>countryOption = new ArrayList<>();
                                 countryOption.add("WHERE country.Region LIKE '"+ region +"'");
-                                countryOption.add("");
+                                System.out.println("If you would like to limit number of results, please put in to how many top results by population");
+                                String limit= input.readLine();
+                                if (Integer.valueOf(limit) == 0){
+                                    countryOption.add("");
+                                }else
+                                {
+                                    countryOption.add("LIMIT "+limit);
+                                }
                                 System.out.println(region+"'s Countries Populations are as follows:");
                                 System.out.println("\n\n");
                                 con.displayCountry(SQLstatement.getQuery("CountryRow", countryOption));
@@ -173,7 +201,14 @@ public class Menu
                             {
                                 ArrayList<String>cityOption = new ArrayList<>();
                                 cityOption.add("WHERE country.Continent LIKE '"+ continent +"'");
-                                cityOption.add("");
+                                System.out.println("If you would like to limit number of results, please put in to how many top results by population");
+                                String limit= input.readLine();
+                                if (Integer.valueOf(limit) == 0){
+                                    cityOption.add("");
+                                }else
+                                {
+                                    cityOption.add("LIMIT "+limit);
+                                }
                                 System.out.println(continent+"'s Cities Populations are as follows:");
                                 System.out.println("\n\n");
                                 con.displayCity(SQLstatement.getQuery("CityRow", cityOption));
@@ -184,7 +219,7 @@ public class Menu
 
                         }catch( Exception ex )
                         {
-                            System.out.println( "No such Region as " + continent ) ;
+                            System.out.println( "No such Continent as " + continent ) ;
                         }
 
                     }
@@ -203,7 +238,14 @@ public class Menu
                             {
                                 ArrayList<String>cityOption = new ArrayList<>();
                                 cityOption.add("WHERE country.Region LIKE '"+ region +"'");
-                                cityOption.add("");
+                                System.out.println("If you would like to limit number of results, please put in to how many top results by population");
+                                String limit= input.readLine();
+                                if (Integer.valueOf(limit) == 0){
+                                    cityOption.add("");
+                                }else
+                                {
+                                    cityOption.add("LIMIT "+limit);
+                                }
                                 System.out.println(region+"'s Cities Populations are as follows:");
                                 System.out.println("\n\n");
                                 con.displayCity(SQLstatement.getQuery("CityRow", cityOption));
@@ -223,21 +265,73 @@ public class Menu
                 .addItem( new MenuItem("Country", null, new ActionListener(){
                     public void actionPerformed(ActionEvent e) {
 
-                        ArrayList<String> cityOptions = new ArrayList<>();
-                        cityOptions.add("WHERE country.Name Like 'France'");
-                        cityOptions.add("");
-                        con.displayCity(SQLstatement.getQuery("CityRow",cityOptions));
-                        System.out.println("\n\n");
+                        String country="";
+                        System.out.println("Please put in name of the Country");
+                        try {
+                            BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+                            country = input.readLine() ;
+                            ArrayList<String>nameList=new ArrayList<>();
+                            nameList=con.getCountries();
+                            if(nameList.contains(country))
+                            {
+                                ArrayList<String>cityOption = new ArrayList<>();
+                                cityOption.add("WHERE country.Region LIKE '"+ country +"'");
+                                System.out.println("If you would like to limit number of results, please put in to how many top results by population");
+                                String limit= input.readLine();
+                                if (Integer.valueOf(limit) == 0){
+                                    cityOption.add("");
+                                }else
+                                {
+                                    cityOption.add("LIMIT "+limit);
+                                }
+                                System.out.println(country+"'s Cities Populations are as follows:");
+                                System.out.println("\n\n");
+                                con.displayCity(SQLstatement.getQuery("CityRow", cityOption));
+                                System.out.println("\n\n");
+
+
+                            }
+
+                        }catch( Exception ex )
+                        {
+                            System.out.println( "No such Country as " + country ) ;
+                        }
                     }
                 }) )
                 .addItem( new MenuItem("District", null, new ActionListener(){
                     public void actionPerformed(ActionEvent e) {
 
-                        ArrayList<String> cityOptions = new ArrayList<>();
-                        cityOptions.add("WHERE city.District Like 'Noord-Holland'");
-                        cityOptions.add("");
-                        con.displayCity(SQLstatement.getQuery("CityRow",cityOptions));
-                        System.out.println("\n\n");
+                        String district="";
+                        System.out.println("Please put in name of the Country");
+                        try {
+                            BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+                            district = input.readLine() ;
+                            ArrayList<String>nameList=new ArrayList<>();
+                            nameList=con.getDistricts();
+                            if(nameList.contains(district))
+                            {
+                                ArrayList<String>cityOption = new ArrayList<>();
+                                cityOption.add("WHERE city.District LIKE '"+ district +"'");
+                                System.out.println("If you would like to limit number of results, please put in to how many top results by population");
+                                String limit= input.readLine();
+                                if (Integer.valueOf(limit) == 0){
+                                    cityOption.add("");
+                                }else
+                                {
+                                    cityOption.add("LIMIT "+limit);
+                                }
+                                System.out.println(district+"'s Cities Populations are as follows:");
+                                System.out.println("\n\n");
+                                con.displayCity(SQLstatement.getQuery("CityRow", cityOption));
+                                System.out.println("\n\n");
+
+
+                            }
+
+                        }catch( Exception ex )
+                        {
+                            System.out.println( "No such District as " + district ) ;
+                        }
                     }
                 }) ).addItem( backLink );
 
@@ -246,31 +340,93 @@ public class Menu
         subMenu3.addItem( new MenuItem("World", null, new ActionListener(){
             public void actionPerformed(ActionEvent e) {
 
+                BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
                 ArrayList<String> capitalOptions = new ArrayList<>();
                 capitalOptions.add("");
-                capitalOptions.add("");
-                con.displayCapital(SQLstatement.getQuery("CapitalCityRow",capitalOptions));
-                System.out.println("\n\n");
+                System.out.println("If you would like to limit number of results, please put in to how many top results by population");
+                try {
+                    String limit = input.readLine();
+                    if (Integer.valueOf(limit) == 0) {
+                        capitalOptions.add("");
+                    } else {
+                        capitalOptions.add("LIMIT " + limit);
+                    }
+                    con.displayCapital(SQLstatement.getQuery("CapitalCityRow", capitalOptions));
+                    System.out.println("\n\n");
+                }catch( Exception ex )
+                {
+                    System.out.println( "no input detected" ) ;
+                }
+
             }
         }) )
                 .addItem( new MenuItem("Continent", null, new ActionListener(){
                     public void actionPerformed(ActionEvent e) {
 
-                        ArrayList<String> capitalOptions = new ArrayList<>();
-                        capitalOptions.add("WHERE country.Continent Like 'Europe'");
-                        capitalOptions.add("");
-                        con.displayCapital(SQLstatement.getQuery("CapitalCityRow",capitalOptions));
-                        System.out.println("\n\n");
+                        String continent="";
+                        System.out.println("Please put in name of the Country");
+                        try {
+                            BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+                            continent = input.readLine() ;
+                            ArrayList<String>nameList;
+                            nameList=con.getContinents();
+                            if(nameList.contains(continent))
+                            {
+                                ArrayList<String>capitalOption = new ArrayList<>();
+                                capitalOption.add("WHERE country.Continent LIKE '"+ continent +"'");
+                                String limit = input.readLine();
+                                if (Integer.valueOf(limit) == 0) {
+                                    capitalOption.add("");
+                                } else {
+                                    capitalOption.add("LIMIT " + limit);
+                                }
+                                System.out.println(continent+"'s Capitals Populations are as follows:");
+                                System.out.println("\n\n");
+                                con.displayCapital(SQLstatement.getQuery("CityRow", capitalOption));
+                                System.out.println("\n\n");
+
+
+                            }
+
+                        }catch( Exception ex )
+                        {
+                            System.out.println( "No such Continent as " + continent ) ;
+                        }
                     }
                 }) )
                 .addItem( new MenuItem("Region", null, new ActionListener(){
                     public void actionPerformed(ActionEvent e) {
 
-                        ArrayList<String> capitalOptions = new ArrayList<>();
-                        capitalOptions.add("WHERE country.Region Like 'Southern Europe'");
-                        capitalOptions.add("");
-                        con.displayCapital(SQLstatement.getQuery("CapitalCityRow",capitalOptions));
-                        System.out.println("\n\n");
+                        String region="";
+                        System.out.println("Please put in name of the Country");
+                        try {
+                            BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+                            region = input.readLine() ;
+                            ArrayList<String>nameList;
+                            nameList=con.getContinents();
+                            if(nameList.contains(region))
+                            {
+                                ArrayList<String>capitalOption = new ArrayList<>();
+                                capitalOption.add("WHERE country.Region LIKE '"+ region +"'");
+                                System.out.println("If you would like to limit number of results, please put in to how many top results by population");
+                                String limit = input.readLine();
+                                if (Integer.valueOf(limit) == 0) {
+                                    capitalOption.add("");
+                                } else {
+                                    capitalOption.add("LIMIT " + limit);
+                                }
+                                System.out.println(region+"'s Capitals Populations are as follows:");
+                                System.out.println("\n\n");
+                                con.displayCapital(SQLstatement.getQuery("CityRow", capitalOption));
+                                System.out.println("\n\n");
+
+
+                            }
+
+                        }catch( Exception ex )
+                        {
+                            System.out.println( "No such Continent as " + region ) ;
+                        }
                     }
                 }) )
                 .addItem( backLink );
