@@ -322,6 +322,34 @@ public class DB_Connection {
 
     }
 
+    public void displayLang (String LangQuery)
+    {
+        String result="did not get result for query";
+        if (con != null)
+        {
+
+            try {
+                Statement stmt = con.createStatement();
+                ResultSet rs = stmt.executeQuery(LangQuery);
+                while (rs.next())
+            {
+                    String name = rs.getString("Language");
+                    long totalPop = rs.getLong("Speaker_pop");
+                    float Percentage = rs.getFloat("Percent_of_World_Population");
+                    result = String.format(" Language: %s World Population Percentage: %f Total Speaker Population %d", name, Percentage, totalPop);
+                    System.out.println(result);
+                }
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+
+            }
+        }else
+        {
+            System.out.println(result);
+        }
+    }
+
     public ArrayList<String> getCountries()
     {
         ArrayList<String> countryValidation= new ArrayList<>();

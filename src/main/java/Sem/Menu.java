@@ -454,6 +454,8 @@ public class Menu
                 }) ).addItem( backLink );
         Menu subMenu5 = new Menu("Language Report");
         subMenu5.addItem( new MenuItem("Display Report", null, e -> {
+            ArrayList<String>Lang = new ArrayList<>();
+            con.displayLang(SQLstatement.getQuery("LanguageRow", Lang));
 
 
         }) ).addItem( backLink );
