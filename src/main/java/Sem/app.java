@@ -22,7 +22,7 @@ public class app
     public boolean init(){
         try {
             con = DB_Connection.getInstance();
-            con.Connect("db",false);
+            con.Connect("db",true);
             BufferedReader br = new BufferedReader( new InputStreamReader( System.in ) ) ;
             Menu currentMenu = Menu.createMenuSystem() ;
             currentMenu = Menu.additionalDisplay(currentMenu,br);

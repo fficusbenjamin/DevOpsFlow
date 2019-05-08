@@ -292,7 +292,7 @@ public class DB_Connection {
 
     }
 
-    public String displayPop (String popQuery)
+    public void displayPop (String popQuery, String type)
     {
         String result="did not get result for query";
         if (con != null)
@@ -302,16 +302,24 @@ public class DB_Connection {
                 Statement stmt = con.createStatement();
                 ResultSet rs = stmt.executeQuery(popQuery);
                 rs.next();
-                long Population= rs.getLong("Population");
-                result = String.valueOf(Population);
-                return result;
+                String name =rs.getString(type);
+                long totalPop = rs.getLong("totalPop");
+                long cityPop= rs.getLong("cityPop");
+                float City_Percentage = rs.getFloat("City_Percentage");
+                long Not_in_Cities= rs.getLong("Not_in_Cities");
+                float Not_in_Cities_Percentage = rs.getFloat("Not_in_Cities_Percentage");
+                result = String.format(" %s's Name is %s \n Total Population %d \n Total Cities Population %d \n Percentage of City dwellers %f \n Total Population outside Cities %d \n Percentage of Rural population %f \n\n", type, name, totalPop, cityPop, City_Percentage, Not_in_Cities, Not_in_Cities_Percentage);
+                System.out.println(result);
 
             } catch (SQLException e) {
                 e.printStackTrace();
 
             }
-        }
-        return result;
+        }else
+            {
+                System.out.println(result);
+            }
+
     }
 
     public ArrayList<String> getCountries()

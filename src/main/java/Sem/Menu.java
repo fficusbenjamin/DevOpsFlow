@@ -364,7 +364,7 @@ public class Menu
                     public void actionPerformed(ActionEvent e) {
 
                         String continent="";
-                        System.out.println("Please put in name of the Country");
+                        System.out.println("Please put in name of the Continent");
                         try {
                             BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
                             continent = input.readLine() ;
@@ -403,7 +403,7 @@ public class Menu
                             BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
                             region = input.readLine() ;
                             ArrayList<String>nameList;
-                            nameList=con.getContinents();
+                            nameList=con.getRegions();
                             if(nameList.contains(region))
                             {
                                 ArrayList<String>capitalOption = new ArrayList<>();
@@ -425,172 +425,37 @@ public class Menu
 
                         }catch( Exception ex )
                         {
-                            System.out.println( "No such Continent as " + region ) ;
+                            System.out.println( "No such Region as " + region ) ;
                         }
                     }
                 }) )
                 .addItem( backLink );
         Menu subMenu4 = new Menu("Population Menu");
-        subMenu4.addItem( new MenuItem("City population for Continent", null, new ActionListener(){
+        subMenu4.addItem( new MenuItem("Continent Population Report", null, new ActionListener(){
             public void actionPerformed(ActionEvent e) {
+                String type = "Continent";
+                pop(type);
 
 
             }
         }) )
-                .addItem( new MenuItem("City population for Region", null, new ActionListener(){
-                    public void actionPerformed(ActionEvent e) {
+                .addItem( new MenuItem("Region Population Report", null, e -> {
+                    String type = "Region";
+                    pop(type);
 
 
-                    }
                 }) )
-                .addItem( new MenuItem("City population for Country", null, new ActionListener(){
-                    public void actionPerformed(ActionEvent e) {
+                .addItem( new MenuItem("Country Population Report", null, e -> {
+                    String type = "Name";
+                    pop(type);
 
 
-                    }
-                }) )
-                .addItem( new MenuItem("World Population", null, new ActionListener(){
-                    public void actionPerformed(ActionEvent e) {
 
-                        ArrayList<String> popOptions = new ArrayList<>();
-                        popOptions.add("");
-                        popOptions.add("");
-                        System.out.println("\nWorld Population is "+con.displayPop(SQLstatement.getQuery("PopulationRow",popOptions))+"\n");
-                        System.out.println("\n\n");
-
-                    }
-                }) )
-                .addItem( new MenuItem("Continent Population", null, new ActionListener(){
-                    public void actionPerformed(ActionEvent e) {
-
-                        String continent="";
-                        System.out.println("Please put in name of the Country");
-                        try {
-                            BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
-                            continent = input.readLine() ;
-                            ArrayList<String>nameList=new ArrayList<>();
-                            nameList=con.getContinents();
-                            if(nameList.contains(continent))
-                            {
-                                ArrayList<String>countryOption = new ArrayList<>();
-                                countryOption.add("Where country.Continent Like '"+continent+"'");
-                                System.out.println(continent+" Population is "+con.displayPop(SQLstatement.getQuery("PopulationRow",countryOption)));
-
-                            }
-
-                        }catch( Exception ex )
-                        {
-                            System.out.println( "No such Region as " + continent ) ;
-                        }
-
-                    }
-                }) )
-                .addItem( new MenuItem("Region Population", null, new ActionListener(){
-                    public void actionPerformed(ActionEvent e) {
-
-                        String region="";
-                        System.out.println("Please put in name of the Country");
-                        try {
-                            BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
-                            region = input.readLine() ;
-                            ArrayList<String>nameList=new ArrayList<>();
-                            nameList=con.getRegions();
-                            if(nameList.contains(region))
-                            {
-                                ArrayList<String>countryOption = new ArrayList<>();
-                                countryOption.add("Where country.Region Like '"+region+"'");
-                                System.out.println(region+" Population is "+con.displayPop(SQLstatement.getQuery("PopulationRow",countryOption)));
-
-                            }
-
-                        }catch( Exception ex )
-                        {
-                            System.out.println( "No such Region as " + region ) ;
-                        }
-
-                    }
-                }) )
-                .addItem( new MenuItem("Country Population", null, new ActionListener(){
-                    public void actionPerformed(ActionEvent e) {
-
-                        String country="";
-                        System.out.println("Please put in name of the Country");
-                        try {
-                            BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
-                            country = input.readLine() ;
-                            ArrayList<String>nameList=new ArrayList<>();
-                            nameList=con.getCountries();
-                            if(nameList.contains(country))
-                            {
-                                ArrayList<String>countryOption = new ArrayList<>();
-                                countryOption.add("Where country.Name Like '"+country+"'");
-                                System.out.println(country+" Population is "+con.displayPop(SQLstatement.getQuery("PopulationRow",countryOption)));
-
-                            }
-
-                        }catch( Exception ex )
-                        {
-                            System.out.println( "No such country as " + country ) ;
-                        }
-
-                    }
-                }) )
-                .addItem( new MenuItem("District Population", null, new ActionListener(){
-                    public void actionPerformed(ActionEvent e) {
-
-                        String district="";
-                        System.out.println("Please put in name of the District");
-                        try {
-                            BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
-                            district = input.readLine() ;
-                            ArrayList<String>nameList=new ArrayList<>();
-                            nameList=con.getDistricts();
-                            if(nameList.contains(district))
-                            {
-                                ArrayList<String>countryOption = new ArrayList<>();
-                                countryOption.add("Where city.District Like '"+district+"'");
-                                System.out.println(district+" Population is "+con.displayPop(SQLstatement.getQuery("CityPopRow",countryOption)));
-
-                            }
-
-                        }catch( Exception ex )
-                        {
-                            System.out.println( "No such District as " + district ) ;
-                        }
-
-                    }
-                }) )
-                .addItem( new MenuItem("City Population", null, new ActionListener(){
-                    public void actionPerformed(ActionEvent e) {
-
-                        String city="";
-                        System.out.println("Please put in name of the City");
-                        try {
-                            BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
-                            city = input.readLine() ;
-                            ArrayList<String>nameList=new ArrayList<>();
-                            nameList=con.getCities();
-                            if(nameList.contains(city))
-                            {
-                                ArrayList<String>countryOption = new ArrayList<>();
-                                countryOption.add("Where city.Name Like '"+city+"'");
-                                System.out.println(city+" Population is "+con.displayPop(SQLstatement.getQuery("CityPopRow",countryOption)));
-
-                            }
-
-                        }catch( Exception ex )
-                        {
-                            System.out.println( "No such City as " + city ) ;
-                        }
-
-                    }
                 }) ).addItem( backLink );
         Menu subMenu5 = new Menu("Language Report");
-        subMenu5.addItem( new MenuItem("Display Report", null, new ActionListener(){
-            public void actionPerformed(ActionEvent e) {
+        subMenu5.addItem( new MenuItem("Display Report", null, e -> {
 
 
-            }
         }) ).addItem( backLink );
 
         Menu rootMenu = new Menu( "Create a report" ) ;
@@ -626,5 +491,63 @@ public class Menu
 
         //TODO: currentMenu is always null here, find better solution
         return currentMenu;
+    }
+    public static void pop (String type)
+    {
+        String name="";
+        System.out.println("Please put in name of the "+type);
+        try {
+            BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+            name = input.readLine() ;
+            boolean test = false;
+            ArrayList<String>nameList;
+            switch(type)
+            {
+                case "Continent":
+                    nameList=con.getContinents();
+                    if(nameList.contains(name))
+                    {
+                        test = true;
+                    }
+
+                    break;
+                case "Region":
+                    nameList=con.getRegions();
+                    if(nameList.contains(name))
+                    {
+                        test = true;
+                    }
+                    break;
+                case "Name":
+                    nameList=con.getCountries();
+                    if(nameList.contains(name))
+                    {
+                        test = true;
+                    }
+                    break;
+            }
+
+
+            if(test == true)
+            {
+                ArrayList<String>popOption = new ArrayList<>();
+                popOption.add(type);
+                popOption.add(type);
+                popOption.add("'"+ name +"'");
+                popOption.add(type);
+                System.out.println("\n\n");
+                con.displayPop(SQLstatement.getQuery("PopulationRow", popOption), type);
+                System.out.println("\n\n");
+
+
+            } else
+                {
+                    System.out.println("Name not found");
+                }
+
+        }catch( Exception ex )
+        {
+            System.out.println( "No such Continent as " + name ) ;
+        }
     }
 }
