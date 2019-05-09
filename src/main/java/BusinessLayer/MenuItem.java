@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 
 public class MenuItem
 {
+    //variables declaration
     private String title ;
     private Menu submenu ;
     private ActionListener onselect ;
@@ -16,6 +17,7 @@ public class MenuItem
         return title;
     }
 
+    //method to obtain the title, submenu number and action from the user choice
     public MenuItem(String title, Menu submenu, ActionListener onselect )
     {
         this.title = title ;
@@ -23,11 +25,13 @@ public class MenuItem
         this.onselect = onselect ;
     }
 
+    //method to get the submenu number from the user choice
     public void setSubMenu( Menu submenu )
     {
         this.submenu = submenu ;
     }
 
+    //method to get the action performed by the user in the menu
     public void select()
     {
         if( onselect != null )
