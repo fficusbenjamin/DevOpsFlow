@@ -28,7 +28,7 @@ public class app
         try {
             //tries to connect to the database
             con = DB_Connection.getInstance();
-            con.Connect("db");
+            con.Connect("db",true);
             BufferedReader br = new BufferedReader( new InputStreamReader( System.in ) ) ;
 
             //creates the menu from the menu class
