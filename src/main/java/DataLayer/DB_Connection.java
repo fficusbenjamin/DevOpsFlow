@@ -121,77 +121,7 @@ public class DB_Connection {
         return true;
     }
 
-    public ArrayList<DataRow> getResult(String classType, String sqlStmt){
-        ArrayList<DataRow> list = new ArrayList<>();
-
-        //We make sure we have a working connection
-        if (con == null)
-        {
-            this.Connect("db",false);
-        }
-
-        try
-        {
-            // Create an SQL statement
-            Statement stmt = con.createStatement();
-            // Execute SQL statement
-            ResultSet result = stmt.executeQuery(sqlStmt);
-            //Loop through each row inside result
-            while (result.next()) {
-                DataRow newRow = new CountryRow();
-                /*
-                //TODO: Currently only works with CountryRow
-                switch (classType){
-                    case "CityRow":
-                        newRow = new CityRow();
-
-                    default:
-                        newRow = new DataRow();
-                }*/
-                //We add the results to the chosen DataRow
-                ArrayList<String> properties = newRow.getPropertyNames();
-                for (String prop : properties)
-                {
-                    if (prop != null)
-                    {
-                       // System.out.println("Test value " + result.getString(prop));
-                        if (newRow.getClass().getField(prop).getType().isPrimitive())
-                        {
-                            newRow.setPropertyValue(prop,result.getInt(prop));
-                        }else{
-                            newRow.setPropertyValue(prop,result.getString(prop));
-                        }
-
-
-
-
-                    }else{
-                        System.out.println("Given property is null");
-                    }
-
-                }
-                if (newRow != null)
-                {
-                    list.add(newRow);
-                    //System.out.println("Added value: \n ");
-                    //System.out.println(((CityRow) newRow).toString() );
-                }
-
-            }
-            System.out.println("Number of rows loaded:" + list.size() );
-            return list;
-
-        }catch (SQLException sqlError){
-            System.out.println("Invalid SQL statement!");
-        }
-        catch (Exception e)
-        {
-            System.out.println(e.getMessage());
-            System.out.println("Failed to get the result");
-            return null;
-        }
-        return list;
-    }
+// method that loads and displays results of City report query- detects values by column names and loads variables with their values before printing result line
     public void displayCity (String cityQuery)
     {
         if (con != null)
@@ -202,17 +132,9 @@ public class DB_Connection {
                 while (rs.next())
                 {
                     String Name= rs.getString("Name");
-                    //   System.out.println(Name);
                     String Country= rs.getString("Country");
-                    //   System.out.println(Country);
                     String District = rs.getString("District");
-                    //  System.out.println(District);
-                    //  String Region= rs.getString("Region");
-                    //  System.out.println(Region);
                     int Population= rs.getInt("Population");
-                    //   System.out.println(Population);
-                    //   String Capital= rs.getString("Capital");
-                    //    System.out.println(Capital);
                     String result = String.format("%s %s %s %d", Name, Country, District, Population);
 
                     System.out.println(result);
@@ -225,6 +147,7 @@ public class DB_Connection {
 
 
     }
+    // method that loads and displays results of Country report query- detects values by column names and loads variables with their values before printing result line
     public void displayCountry (String countryQuery)
     {
         if (con != null)
@@ -235,17 +158,11 @@ public class DB_Connection {
                 while (rs.next())
                 {
                     String Name= rs.getString("Name");
-                    // System.out.println(Name);
                     String Code= rs.getString("Code");
-                    // System.out.println(Code);
                     String Continent = rs.getString("Continent");
-                    //  System.out.println(Continent);
                     String Region= rs.getString("Region");
-                    //  System.out.println(Region);
                     int Population= rs.getInt("Population");
-                    //   System.out.println(Population);
                     String Capital= rs.getString("Capital");
-                    //    System.out.println(Capital);
                     String result = String.format("%s %s %s %s %d %s", Name, Code, Continent, Region, Population, Capital);
 
                     System.out.println(result);
@@ -258,6 +175,7 @@ public class DB_Connection {
 
 
     }
+    //method that loads and displays results of Capital City report query- detects values by column names and loads variables with their values before printing result line
     public void displayCapital (String capitalQuery)
     {
         if (con != null)
@@ -268,17 +186,8 @@ public class DB_Connection {
                 while (rs.next())
                 {
                     String Name= rs.getString("Name");
-                    //   System.out.println(Name);
                     String Country= rs.getString("Country");
-                    //   System.out.println(Country);
-                    //  String District = rs.getString("District");
-                    //  System.out.println(District);
-                    //  String Region= rs.getString("Region");
-                    //  System.out.println(Region);
                     int Population= rs.getInt("Population");
-                    //   System.out.println(Population);
-                    //   String Capital= rs.getString("Capital");
-                    //    System.out.println(Capital);
                     String result = String.format("%s %s %d", Name, Country, Population);
 
                     System.out.println(result);
@@ -291,7 +200,7 @@ public class DB_Connection {
 
 
     }
-
+//method that loads and displays results of Population report query- detects values by column names and loads variables with their values before printing result line
     public void displayPop (String popQuery, String type)
     {
         String result="did not get result for query";
@@ -321,7 +230,7 @@ public class DB_Connection {
             }
 
     }
-
+// method that loads and displays results of Language report query- detects values by column names and loads variables with their values before printing result line
     public void displayLang (String LangQuery)
     {
         String result="did not get result for query";
@@ -349,7 +258,7 @@ public class DB_Connection {
             System.out.println(result);
         }
     }
-
+// method used to validate Country name user input - creates array list of all country names in Database
     public ArrayList<String> getCountries()
     {
         ArrayList<String> countryValidation= new ArrayList<>();
@@ -368,6 +277,7 @@ public class DB_Connection {
         }
         return countryValidation;
     }
+// method used to validate Continents name user input - creates array list of all continent names in Database
     public ArrayList<String> getContinents()
     {
         ArrayList<String> continentValidation= new ArrayList<>();
@@ -386,6 +296,7 @@ public class DB_Connection {
         }
         return continentValidation;
     }
+    // method used to validate Region name user input - creates array list of all region names in Database
     public ArrayList<String> getRegions()
     {
         ArrayList<String> regionValidation= new ArrayList<>();
@@ -404,6 +315,7 @@ public class DB_Connection {
         }
         return regionValidation;
     }
+    // method used to validate District name user input - creates array list of all district names in Database
     public ArrayList<String> getDistricts()
     {
         ArrayList<String> districtValidation= new ArrayList<>();
@@ -422,22 +334,5 @@ public class DB_Connection {
         }
         return districtValidation;
     }
-    public ArrayList<String> getCities()
-    {
-        ArrayList<String> cityValidation= new ArrayList<>();
-        try {
-            Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT Name FROM city");
-            while (rs.next())
-            {
-                String Name= rs.getString("Name");
-                cityValidation.add(Name);
-            }
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-
-        }
-        return cityValidation;
-    }
 }
