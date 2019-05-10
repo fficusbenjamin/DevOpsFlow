@@ -12,7 +12,7 @@ public class app
     {
     }
 
-    public static DB_Connection con;
+   // public static DB_Connection con;
 
     //main method
     public static void main( String[] args )
@@ -27,8 +27,8 @@ public class app
     public boolean init(){
         try {
             //tries to connect to the database
-            con = DB_Connection.getInstance();
-            con.Connect("db",true);
+           // con = DB_Connection.getInstance();
+           // con.Connect("db",true);
             BufferedReader br = new BufferedReader( new InputStreamReader( System.in ) ) ;
 
             //creates the menu from the menu class
