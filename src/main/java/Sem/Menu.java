@@ -171,9 +171,23 @@ public class Menu
 
             ArrayList<String> cityOptions = new ArrayList<>();
             cityOptions.add("");
+            System.out.println("If you would like to limit number of results, please put in to how many top results by population");
+            try{
+            BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+            String limit= input.readLine();
+            if (Integer.valueOf(limit) == 0){
+                cityOptions.add("");
+            }else
+            {
+                cityOptions.add("LIMIT "+limit);
+            }
             cityOptions.add("");
             con.displayCity(SQLstatement.getQuery("CityRow",cityOptions));
             System.out.println("\n\n");
+            }catch( Exception ex )
+            {
+                System.out.println( "did not understand") ;
+            }
         }) )
                 .addItem( new MenuItem("Continent", null, e -> {
 
@@ -200,6 +214,7 @@ public class Menu
                             System.out.println("\n\n");
                             con.displayCity(SQLstatement.getQuery("CityRow", cityOption));
                             System.out.println("\n\n");
+
 
 
                         }
@@ -351,6 +366,7 @@ public class Menu
                         {
                             ArrayList<String>capitalOption = new ArrayList<>();
                             capitalOption.add("WHERE country.Continent LIKE '"+ continent +"'");
+                            System.out.println("If you would like to limit number of results, please put in to how many top results by population");
                             String limit = input.readLine();
                             if (Integer.valueOf(limit) == 0) {
                                 capitalOption.add("");
