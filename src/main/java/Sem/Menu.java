@@ -249,7 +249,7 @@ public class Menu
                 .addItem( new MenuItem("Country", null, e -> {
 
                     String country="";
-                    System.out.println("Please put in name of the Country");
+                    System.out.println("Please put in name of the District");
                     try {
                         BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
                         country = input.readLine() ;
@@ -258,7 +258,7 @@ public class Menu
                         if(nameList15.contains(country))
                         {
                             ArrayList<String>cityOption = new ArrayList<>();
-                            cityOption.add("WHERE country.Region LIKE '"+ country +"'");
+                            cityOption.add("WHERE country.Name LIKE '"+ country +"'");
                             System.out.println("If you would like to limit number of results, please put in to how many top results by population");
                             String limit= input.readLine();
                             if (Integer.valueOf(limit) == 0){
