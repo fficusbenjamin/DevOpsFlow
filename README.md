@@ -44,6 +44,6 @@
 | 27 | The population of a continent.  | Yes | ![Alt text](docs/images/population_continent_europe.png "The population of a continent(Europe).")  |
 | 28 | The population of a region.  | Yes | ![Alt text](docs/images/population_region_eastern_asia.png "The population of a region(Eastern Asia).")  |
 | 29 | The population of a country.  | Yes | ![Alt text](docs/images/population_country_hungary.png "The population of a country(Hungary).")  |
-| 30 | The population of a district.  | Yes |  ![Alt text](docs/images/population_district.png "The population of district "Budapest".") |
-| 31 | The population of a city.  | Yes | ![Alt text](docs/images/population_city.png "The population of city "London".")  |
+| 30 | The population of a district.  | Yes |  ![Alt text](docs/images/population_district.png "The population of district: Budapest.") |
+| 31 | The population of a city.  | Yes | ![Alt text](docs/images/population_city.png "The population of city: London.")  |
 | 32 | The number of people who speak a certain language(Language Report) | Yes | ![Alt text](docs/images/language_report.png "The number of people who speak a certain language(Language Report)")  |
