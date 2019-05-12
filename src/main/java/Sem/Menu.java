@@ -173,17 +173,17 @@ public class Menu
             cityOptions.add("");
             System.out.println("If you would like to limit number of results, please put in to how many top results by population");
             try{
-            BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
-            String limit= input.readLine();
-            if (Integer.valueOf(limit) == 0){
+                BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+                String limit= input.readLine();
+                if (Integer.valueOf(limit) == 0){
+                    cityOptions.add("");
+                }else
+                {
+                    cityOptions.add("LIMIT "+limit);
+                }
                 cityOptions.add("");
-            }else
-            {
-                cityOptions.add("LIMIT "+limit);
-            }
-            cityOptions.add("");
-            con.displayCity(SQLstatement.getQuery("CityRow",cityOptions));
-            System.out.println("\n\n");
+                con.displayCity(SQLstatement.getQuery("CityRow",cityOptions));
+                System.out.println("\n\n");
             }catch( Exception ex )
             {
                 System.out.println( "did not understand") ;
@@ -433,9 +433,77 @@ public class Menu
 
 
                 }) )
+                .addItem( new MenuItem("World Population Report", null, e -> {
+                    String type = "World";
+                    ArrayList<String>world = new ArrayList<>();
+                    con.displayWorld(SQLstatement.getQuery("WorldPop", world));
+                    System.out.println("\n\n");
+
+
+
+                }) )
                 .addItem( new MenuItem("Country Population Report", null, e -> {
                     String type = "Name";
                     pop(type);
+
+
+
+                }) )
+                .addItem( new MenuItem("District Population Report", null, e -> {
+                    String district="";
+                    System.out.println("Please put in name of the District");
+                    try {
+                        BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+                        district = input.readLine() ;
+                        ArrayList<String> nameList16;
+                        nameList16 =con.getDistricts();
+                        if(nameList16.contains(district))
+                        {
+                            ArrayList<String>cityOption = new ArrayList<>();
+                            cityOption.add("WHERE city.District LIKE '"+ district +"'");
+
+                            System.out.println(district+"'s Cities Populations are as follows:");
+                            System.out.println("\n\n");
+                            System.out.println(district+" Population is "+con.displayC(SQLstatement.getQuery("cityquery", cityOption)));
+                            System.out.println("\n\n");
+
+                        }
+
+                    }catch( Exception ex )
+                    {
+                        System.out.println( "No such District as " + district ) ;
+                    }
+
+
+
+
+                }) )
+                .addItem( new MenuItem("City Population Report", null, e -> {
+                    String district="";
+                    System.out.println("Please put in name of the City");
+                    try {
+                        BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+                        district = input.readLine() ;
+                        ArrayList<String> nameList16;
+                        nameList16 =con.getCities();
+                        if(nameList16.contains(district))
+                        {
+                            ArrayList<String>cityOption = new ArrayList<>();
+                            cityOption.add("WHERE city.Name LIKE '"+ district +"'");
+
+                            System.out.println(district+"'s Cities Populations are as follows:");
+                            System.out.println("\n\n");
+                            System.out.println(district+" Population is "+con.displayC(SQLstatement.getQuery("cityquery", cityOption)));
+                            System.out.println("\n\n");
+
+                        }
+
+                    }catch( Exception ex )
+                    {
+                        System.out.println( "No such District as " + district ) ;
+                    }
+
+
 
 
 
@@ -502,6 +570,9 @@ public class Menu
                     }
 
                     break;
+                case "World":
+                    test = true;
+                    break;
                 case "Region":
                     nameList=con.getRegions();
                     if(nameList.contains(name))
@@ -521,20 +592,33 @@ public class Menu
 
             if(test == true)
             {
-                ArrayList<String>popOption = new ArrayList<>();
-                popOption.add(type);
-                popOption.add(type);
-                popOption.add("'"+ name +"'");
-                popOption.add(type);
-                System.out.println("\n\n");
-                con.displayPop(SQLstatement.getQuery("PopulationRow", popOption), type);
-                System.out.println("\n\n");
+                if (type == "World")
+                {
+                    ArrayList<String> popOption = new ArrayList<>();
+                    popOption.add(type);
+                    popOption.add(type);
+                    popOption.add("'" + name + "'");
+                    popOption.add(type);
+                    System.out.println("\n\n");
+                    con.displayPop(SQLstatement.getQuery("PopulationRow", popOption), type);
+                    System.out.println("\n\n");
+
+                }else {
+                    ArrayList<String> popOption = new ArrayList<>();
+                    popOption.add(type);
+                    popOption.add(type);
+                    popOption.add("'" + name + "'");
+                    popOption.add(type);
+                    System.out.println("\n\n");
+                    con.displayPop(SQLstatement.getQuery("PopulationRow", popOption), type);
+                    System.out.println("\n\n");
+                }
 
 
             } else
-                {
-                    System.out.println("Name not found");
-                }
+            {
+                System.out.println("Name not found");
+            }
 
         }catch( Exception ex )
         {
