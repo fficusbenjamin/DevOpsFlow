@@ -249,7 +249,7 @@ public class Menu
                 .addItem( new MenuItem("Country", null, e -> {
 
                     String country="";
-                    System.out.println("Please put in name of the District");
+                    System.out.println("Please put in name of the Country");
                     try {
                         BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
                         country = input.readLine() ;
@@ -283,7 +283,7 @@ public class Menu
                 .addItem( new MenuItem("District", null, e -> {
 
                     String district="";
-                    System.out.println("Please put in name of the Country");
+                    System.out.println("Please put in name of the District");
                     try {
                         BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
                         district = input.readLine() ;
