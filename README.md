@@ -9,6 +9,8 @@
 - Release   [![Releases](https://img.shields.io/github/release/fficusbenjamin/seMethodsCourseworkGroup14/all.svg?style=flat-square)](https://github.com/fficusbenjamin/seMethodsCourseworkGroup14/releases)
 
 
+**Build on master is failing because lack of google cloud credits.**
+
 **32 requirements of 32 have been implemented, which is 100%.**
 
 | ID  | Name  |  Met |  Image |
@@ -35,13 +37,13 @@
 | 20 | The top N populated capital cities in the world where N is provided by the user.  | Yes |  ![Alt text](docs/images/top_n_capital_cities_world.png "The top N populated capital cities in the world where N is provided by the user.") |
 | 21 | The top N populated capital cities in a continent where N is provided by the user.  | Yes | ![Alt text](docs/images/top_n_capital_cities_europe.png "The top N populated capital cities in a continent where N is provided by the user.")  |
 | 22 | The top N populated capital cities in a region where N is provided by the user.  | Yes | ![Alt text](docs/images/top_n_capital_cities_region.png "The top N populated capital cities in a region where N is provided by the user.")  |
-| 23 | The population of people, people living in cities, and people not living in cities in each continent.  | No |  |
-| 24 | The population of people, people living in cities, and people not living in cities in each region.  | No |  |
-| 25 | The population of people, people living in cities, and people not living in cities in each country.  | No |  |
-| 26 | The population of the world.  | No |   |
+| 23 | The population of people, people living in cities, and people not living in cities in each continent.  | Yes | ![Alt text](docs/images/population_continent_europe.png "The population of a continent(Europe).") |
+| 24 | The population of people, people living in cities, and people not living in cities in each region.  | Yes | ![Alt text](docs/images/population_region_eastern_asia.png "The population of a region(Eastern Asia).") |
+| 25 | The population of people, people living in cities, and people not living in cities in each country.  | Yes | ![Alt text](docs/images/population_country_hungary.png "The population of a country(Hungary).") |
+| 26 | The population of the world.  | Yes | ![Alt text](docs/images/population_world.png "The population of world.")  |
 | 27 | The population of a continent.  | Yes | ![Alt text](docs/images/population_continent_europe.png "The population of a continent(Europe).")  |
 | 28 | The population of a region.  | Yes | ![Alt text](docs/images/population_region_eastern_asia.png "The population of a region(Eastern Asia).")  |
 | 29 | The population of a country.  | Yes | ![Alt text](docs/images/population_country_hungary.png "The population of a country(Hungary).")  |
-| 30 | The population of a district.  | No |   |
-| 31 | The population of a city.  | No |   |
+| 30 | The population of a district.  | Yes |  ![Alt text](docs/images/population_district.png "The population of district "Budapest".") |
+| 31 | The population of a city.  | Yes | ![Alt text](docs/images/population_city.png "The population of city "London".")  |
 | 32 | The number of people who speak a certain language(Language Report) | Yes | ![Alt text](docs/images/language_report.png "The number of people who speak a certain language(Language Report)")  |
