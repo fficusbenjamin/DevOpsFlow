@@ -36,7 +36,7 @@
 | 21 | The top N populated capital cities in a continent where N is provided by the user.  | No |   |
 | 22 | The top N populated capital cities in a region where N is provided by the user.  | Yes | ![Alt text](docs/images/top_n_capital_cities_region.png "Title")  |
 | 23 | The population of people, people living in cities, and people not living in cities in each continent.  | Yes | ![Alt text](docs/images/population_continent_europe.png "Title")  |
-| 24 | The population of people, people living in cities, and people not living in cities in each region.  | Yes | ![Alt text](docs/images/population_region_easter_asia.png "Title")  |
+| 24 | The population of people, people living in cities, and people not living in cities in each region.  | Yes | ![Alt text](docs/images/population_region_eastern_asia.png "Title")  |
 | 25 | The population of people, people living in cities, and people not living in cities in each country.  | Yes | ![Alt text](docs/images/population_country_hungary.png "Title")  |
 | 26 | The population of the world.  | Yes |   |
 | 27 | The population of a continent.  | Yes |   |
