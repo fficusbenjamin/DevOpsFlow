@@ -29,18 +29,18 @@ public class DB_Connection {
     public boolean Connect(String domain, boolean local){
         boolean status = false;
 
-            try
-            {
-                // Load Database driver
-                Class.forName("com.mysql.jdbc.Driver");
+        try
+        {
+            // Load Database driver
+            Class.forName("com.mysql.jdbc.Driver");
 
-            }
-            catch (ClassNotFoundException e)
-            {
-                System.out.println("Could not load SQL driver");
+        }
+        catch (ClassNotFoundException e)
+        {
+            System.out.println("Could not load SQL driver");
 
-            }
-            if(local==false){
+        }
+        if(local==false){
 
             int retries = 100;
             for (int i = 0; i < retries; ++i)
@@ -74,33 +74,33 @@ public class DB_Connection {
             status = true;
             return status;
         }else{
-                int retries = 100;
-                for (int i = 0; i < retries; ++i)
+            int retries = 100;
+            for (int i = 0; i < retries; ++i)
+            {
+                System.out.println("Connecting to database...");
+                try
                 {
-                    System.out.println("Connecting to database...");
-                    try
-                    {
-                        // Wait a bit for db to start
-                        Thread.sleep(20000);
-                        // Connect to database
-                        con = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false&useUnicode=true&characterEncoding=utf-8", "root", "example");
-                        System.out.println("Successfully connected, if it crashes after that then its your fault");
-                        // Exit for loop
-                        break;
-                    }
-                    catch (SQLException sqle)
-                    {
-                        System.out.println("Failed to connect to database attempt " + Integer.toString(i));
-                        System.out.println(sqle.getMessage());
-                    }
-                    catch (InterruptedException ie)
-                    {
-                        System.out.println("Thread interrupted? Should not happen.");
-                    }
+                    // Wait a bit for db to start
+                    Thread.sleep(20000);
+                    // Connect to database
+                    con = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false&useUnicode=true&characterEncoding=utf-8", "root", "example");
+                    System.out.println("Successfully connected, if it crashes after that then its your fault");
+                    // Exit for loop
+                    break;
                 }
-                status = true;
-                return status;
+                catch (SQLException sqle)
+                {
+                    System.out.println("Failed to connect to database attempt " + Integer.toString(i));
+                    System.out.println(sqle.getMessage());
+                }
+                catch (InterruptedException ie)
+                {
+                    System.out.println("Thread interrupted? Should not happen.");
+                }
             }
+            status = true;
+            return status;
+        }
 
 
     }
@@ -121,7 +121,7 @@ public class DB_Connection {
         return true;
     }
 
-// method that loads and displays results of City report query- detects values by column names and loads variables with their values before printing result line
+    // method that loads and displays results of City report query- detects values by column names and loads variables with their values before printing result line
     public void displayCity (String cityQuery)
     {
         if (con != null)
@@ -200,7 +200,7 @@ public class DB_Connection {
 
 
     }
-//method that loads and displays results of Population report query- detects values by column names and loads variables with their values before printing result line
+    //method that loads and displays results of Population report query- detects values by column names and loads variables with their values before printing result line
     public void displayPop (String popQuery, String type)
     {
         String result="did not get result for query";
@@ -225,12 +225,12 @@ public class DB_Connection {
 
             }
         }else
-            {
-                System.out.println(result);
-            }
+        {
+            System.out.println(result);
+        }
 
     }
-// method that loads and displays results of Language report query- detects values by column names and loads variables with their values before printing result line
+    // method that loads and displays results of Language report query- detects values by column names and loads variables with their values before printing result line
     public void displayLang (String LangQuery)
     {
         String result="did not get result for query";
@@ -241,7 +241,7 @@ public class DB_Connection {
                 Statement stmt = con.createStatement();
                 ResultSet rs = stmt.executeQuery(LangQuery);
                 while (rs.next())
-            {
+                {
                     String name = rs.getString("Language");
                     long totalPop = rs.getLong("Speaker_pop");
                     float Percentage = rs.getFloat("Percent_of_World_Population");
@@ -258,7 +258,49 @@ public class DB_Connection {
             System.out.println(result);
         }
     }
-// method used to validate Country name user input - creates array list of all country names in Database
+    public void displayWorld (String WorldQuery)
+    {
+        String result="did not get result for query";
+        if (con != null)
+        {
+
+            try {
+                Statement stmt = con.createStatement();
+                ResultSet rs = stmt.executeQuery(WorldQuery);
+                while (rs.next())
+                {
+                    // String name = rs.getString("Language");
+                    long totalPop = rs.getLong("World");
+                    //  float Percentage = rs.getFloat("Percent_of_World_Population");
+                    result = String.format(" Worlds Population is %d", totalPop);
+                    System.out.println(result);
+                }
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+
+            }
+        }else
+        {
+            System.out.println(result);
+        }
+    }
+    public String displayC ( String query)
+    {
+        try{
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            rs.next();
+            String result = rs.getString("pop");
+            return result;
+        }catch (SQLException e) {
+            e.printStackTrace();
+
+        }
+
+        return "error";
+    }
+    // method used to validate Country name user input - creates array list of all country names in Database
     public ArrayList<String> getCountries()
     {
         ArrayList<String> countryValidation= new ArrayList<>();
@@ -277,7 +319,7 @@ public class DB_Connection {
         }
         return countryValidation;
     }
-// method used to validate Continents name user input - creates array list of all continent names in Database
+    // method used to validate Continents name user input - creates array list of all continent names in Database
     public ArrayList<String> getContinents()
     {
         ArrayList<String> continentValidation= new ArrayList<>();
@@ -333,6 +375,24 @@ public class DB_Connection {
 
         }
         return districtValidation;
+    }
+    public ArrayList<String> getCities()
+    {
+        ArrayList<String> cityValidation= new ArrayList<>();
+        try {
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT Name FROM city");
+            while (rs.next())
+            {
+                String Name= rs.getString("Name");
+                cityValidation.add(Name);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        }
+        return cityValidation;
     }
 
 }
